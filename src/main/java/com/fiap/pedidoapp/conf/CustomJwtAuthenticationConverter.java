@@ -20,11 +20,13 @@ import lombok.RequiredArgsConstructor;
 @Component
 @RequiredArgsConstructor
 public class CustomJwtAuthenticationConverter implements Converter<Jwt, AbstractAuthenticationToken> {
+    
     private static final String COGNITO_GROUPS = "cognito:groups";
     private static final String COGNITO_USERNAME = "username";
 
     private final CadastrarClientePeloToken cadastrarClientePeloToken;
 
+    @SuppressWarnings("null")
     @Override
     public AbstractAuthenticationToken convert(Jwt source) {
 

@@ -5,6 +5,8 @@ import java.math.RoundingMode;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import org.springframework.transaction.annotation.Transactional;
+
 import com.fiap.pedidoapp.application.cliente.usecases.BuscarClientePorCpf;
 import com.fiap.pedidoapp.application.pedido.gateways.PedidoGateway;
 import com.fiap.pedidoapp.application.produto.usecases.BuscarProdutoPorCodigo;
@@ -42,10 +44,10 @@ public class PedidoRepositoryGateway implements PedidoGateway {
         this.statusPedidoRepository = statusPedidoRepository;
     }
 
-    public static final Integer STATUS_PEDIDO_RECEBIDO = 1;
-    public static final Integer STATUS_PAGAMENTO_AGUARDANDO = 1;
+    
 
     @Override
+    @Transactional(readOnly = true)
     public List<Pedido> listarPedidos() {
         List<PedidoEntity> lista = pedidoRepository.findAll();
         return lista.stream().map(Pedido::new).toList();
@@ -55,7 +57,7 @@ public class PedidoRepositoryGateway implements PedidoGateway {
     public Pedido checkout(Pedido pedido) {
         PedidoEntity novoPedido = PedidoEntity.builder()
                 .data(LocalDateTime.now())
-                .statusPedido(StatusPedidoEntity.builder().idStatusPedido(STATUS_PEDIDO_RECEBIDO).build())
+                .statusPedido(StatusPedidoEntity.builder().idStatusPedido(StatusPedidoEntity.RECEBIDO).build())
                 .build();
 
         if (pedido.getCliente() != null && pedido.getCliente().getCpf() != null
@@ -114,16 +116,35 @@ public class PedidoRepositoryGateway implements PedidoGateway {
     }
 
     @Override
-    public void atualizarStatusPedido(Integer id, String novoStatus) {
+    public void atualizarStatusPedido(Integer id, String descricaoNovoStatus) {
         PedidoEntity pedido = pedidoRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException(MSG_PEDIDO_NAO_ENCONTRADO + id));
 
-        StatusPedidoEntity statusPedido = statusPedidoRepository.findByDescricao(novoStatus)
-                .orElseThrow(() -> new RuntimeException("Status do pedido inválido: " + novoStatus));
+        StatusPedidoEntity statusPedido = statusPedidoRepository.findByDescricao(descricaoNovoStatus)
+                .orElseThrow(() -> new RuntimeException("Status do pedido inválido: " + descricaoNovoStatus));
 
         pedido.setStatusPedido(statusPedido);
 
         pedidoRepository.save(pedido);
+    }
+
+    @Override
+    public void atualizarStatusPedido(Integer id, Integer idNovoStatus) {
+        PedidoEntity pedido = pedidoRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException(MSG_PEDIDO_NAO_ENCONTRADO + id));
+
+        pedido.setStatusPedido(StatusPedidoEntity.builder().idStatusPedido(idNovoStatus).build());
+
+        pedidoRepository.save(pedido);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<Pedido> listarPedidosPagos() {
+
+        return pedidoRepository.findAllByStatusPedidoIdStatusPedido(StatusPedidoEntity.PAGO).stream().map( pedido -> {
+            return new Pedido(pedido);
+        }).toList();
     }
 
 }

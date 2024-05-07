@@ -12,6 +12,10 @@ public interface PedidoGateway {
 
     public Pedido buscarPorId(Integer id);
 
-    void atualizarStatusPedido(Integer id, String novoStatus);
+    void atualizarStatusPedido(Integer id, String descricaoNovoStatus);
+
+    void atualizarStatusPedido(Integer id, Integer idNovoStatus);
+
+    public List<Pedido> listarPedidosPagos();
 
 }

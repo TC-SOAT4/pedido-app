@@ -2,6 +2,9 @@ package com.fiap.pedidoapp.conf;
 
 import com.fiap.pedidoapp.application.pedido.usecases.*;
 import com.fiap.pedidoapp.infrastructure.pedido.persistence.repository.StatusPedidoRepository;
+
+import io.awspring.cloud.sqs.operations.SqsTemplate;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -41,6 +44,11 @@ public class PedidoConfig {
             StatusPedidoRepository statusPedidoRepository) {
         return new PedidoRepositoryGateway(buscarClientePorCpf, buscarProdutoPorCodigo, pedidoRepository,
                 statusPedidoRepository);
+    }
+
+    @Bean
+    EnviarPedidosPagosParaPreparacao enviarPedidosPagosParaPreparacao(PedidoGateway pedidoGateway, SqsTemplate sqsTemplate) {
+        return new EnviarPedidosPagosParaPreparacao(pedidoGateway, sqsTemplate);
     }
 
 }
