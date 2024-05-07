@@ -14,10 +14,8 @@ import com.fiap.pedidoapp.infrastructure.cliente.controllers.dto.ClienteResponse
 import com.fiap.pedidoapp.infrastructure.cliente.persistence.entity.ClienteEntity;
 import com.fiap.pedidoapp.infrastructure.pedido.persistence.entity.ItemEntity;
 import com.fiap.pedidoapp.infrastructure.pedido.persistence.entity.PedidoEntity;
-import com.fiap.pedidoapp.infrastructure.pedido.persistence.entity.StatusPagamentoEntity;
 import com.fiap.pedidoapp.infrastructure.pedido.persistence.entity.StatusPedidoEntity;
 import com.fiap.pedidoapp.infrastructure.pedido.persistence.repository.PedidoRepository;
-import com.fiap.pedidoapp.infrastructure.pedido.persistence.repository.StatusPagamentoRepository;
 import com.fiap.pedidoapp.infrastructure.pedido.persistence.repository.StatusPedidoRepository;
 import com.fiap.pedidoapp.infrastructure.produto.controllers.dto.ProdutoResponse;
 import com.fiap.pedidoapp.infrastructure.produto.persistence.entity.ProdutoEntity;
@@ -32,19 +30,16 @@ public class PedidoRepositoryGateway implements PedidoGateway {
 
     private final StatusPedidoRepository statusPedidoRepository;
 
-    private final StatusPagamentoRepository statusPagamentoRepository;
-
     public static final String MSG_PEDIDO_NAO_ENCONTRADO = "Pedido não encontrado com o ID: ";
 
     public PedidoRepositoryGateway(BuscarClientePorCpf buscarClientePorCpf,
             BuscarProdutoPorCodigo buscarProdutoPorCodigo,
             PedidoRepository pedidoRepository,
-            StatusPedidoRepository statusPedidoRepository, StatusPagamentoRepository statusPagamentoRepository) {
+            StatusPedidoRepository statusPedidoRepository) {
         this.buscarClientePorCpf = buscarClientePorCpf;
         this.buscarProdutoPorCodigo = buscarProdutoPorCodigo;
         this.pedidoRepository = pedidoRepository;
         this.statusPedidoRepository = statusPedidoRepository;
-        this.statusPagamentoRepository = statusPagamentoRepository;
     }
 
     public static final Integer STATUS_PEDIDO_RECEBIDO = 1;
@@ -61,7 +56,6 @@ public class PedidoRepositoryGateway implements PedidoGateway {
         PedidoEntity novoPedido = PedidoEntity.builder()
                 .data(LocalDateTime.now())
                 .statusPedido(StatusPedidoEntity.builder().idStatusPedido(STATUS_PEDIDO_RECEBIDO).build())
-                .statusPagamento(StatusPagamentoEntity.builder().idStatusPagamento(STATUS_PAGAMENTO_AGUARDANDO).build())
                 .build();
 
         if (pedido.getCliente() != null && pedido.getCliente().getCpf() != null
@@ -128,19 +122,6 @@ public class PedidoRepositoryGateway implements PedidoGateway {
                 .orElseThrow(() -> new RuntimeException("Status do pedido inválido: " + novoStatus));
 
         pedido.setStatusPedido(statusPedido);
-
-        pedidoRepository.save(pedido);
-    }
-
-    @Override
-    public void atualizarStatusPagamento(Integer id, String status) {
-        PedidoEntity pedido = pedidoRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException(MSG_PEDIDO_NAO_ENCONTRADO + id));
-
-        StatusPagamentoEntity statusPagamento = statusPagamentoRepository.findByDescricao(status)
-                .orElseThrow(() -> new RuntimeException("Status do pagamento do pedido inválido: " + status));
-
-        pedido.setStatusPagamento(statusPagamento);
 
         pedidoRepository.save(pedido);
     }

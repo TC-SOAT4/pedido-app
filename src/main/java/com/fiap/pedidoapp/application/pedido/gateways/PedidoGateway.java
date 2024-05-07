@@ -14,5 +14,4 @@ public interface PedidoGateway {
 
     void atualizarStatusPedido(Integer id, String novoStatus);
 
-    void atualizarStatusPagamento(Integer id, String status);
 }

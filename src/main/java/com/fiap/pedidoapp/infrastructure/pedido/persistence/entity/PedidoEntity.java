@@ -47,10 +47,6 @@ public class PedidoEntity {
 
     private LocalDateTime data;
 
-    @ManyToOne
-    @JoinColumn(name = "statusPagamentoId")
-    private StatusPagamentoEntity statusPagamento;
-
     public void setPedidoNosItens() {
         itens.forEach(item -> item.setPedido(this));
     }

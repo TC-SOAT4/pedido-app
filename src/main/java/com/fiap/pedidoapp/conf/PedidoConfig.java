@@ -10,7 +10,6 @@ import com.fiap.pedidoapp.application.pedido.gateways.PedidoGateway;
 import com.fiap.pedidoapp.application.produto.usecases.BuscarProdutoPorCodigo;
 import com.fiap.pedidoapp.infrastructure.pedido.gateways.PedidoRepositoryGateway;
 import com.fiap.pedidoapp.infrastructure.pedido.persistence.repository.PedidoRepository;
-import com.fiap.pedidoapp.infrastructure.pedido.persistence.repository.StatusPagamentoRepository;
 
 @Configuration
 public class PedidoConfig {
@@ -39,10 +38,9 @@ public class PedidoConfig {
     PedidoGateway pedidoGateway(BuscarClientePorCpf buscarClientePorCpf,
             BuscarProdutoPorCodigo buscarProdutoPorCodigo,
             PedidoRepository pedidoRepository,
-            StatusPedidoRepository statusPedidoRepository,
-            StatusPagamentoRepository statusPagamentoRepository) {
+            StatusPedidoRepository statusPedidoRepository) {
         return new PedidoRepositoryGateway(buscarClientePorCpf, buscarProdutoPorCodigo, pedidoRepository,
-                statusPedidoRepository, statusPagamentoRepository);
+                statusPedidoRepository);
     }
 
 }

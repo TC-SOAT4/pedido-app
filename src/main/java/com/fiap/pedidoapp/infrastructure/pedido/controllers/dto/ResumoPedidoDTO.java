@@ -23,7 +23,6 @@ public class ResumoPedidoDTO {
     private BigDecimal valorTotal;
     private List<ResumoItemDTO> itens;
     private String statusPedido;
-    private String statusPagamento;
     private String dataHoraPedido;
 
     public ResumoPedidoDTO(Pedido pedido) {
