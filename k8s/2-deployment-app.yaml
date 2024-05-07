@@ -16,8 +16,8 @@ spec:
         app: app-pod
     spec:
       containers:
-        - name: lanchonete-app
-          image: thiagobsn/lanchonete-app
+        - name: pedido-app
+          image: thiagobsn/pedido-app
           ports:
             - containerPort: 8080
           env:
@@ -48,12 +48,16 @@ spec:
                   key: SPRING_JPA_PROPERTIES_HIBERNATE_FORMAT_SQL
           livenessProbe:
             httpGet:
-              path: /lanchonete-app/actuator/health/liveness
+              path: /pedido-app/actuator/health/liveness
               port: 8080
             initialDelaySeconds: 30
             periodSeconds: 3
             failureThreshold: 3
           resources:
+            limits:
+              memory: 512Mi
+              cpu: 1000m
             requests:
               cpu: 500m
+              memory: 256Mi
       

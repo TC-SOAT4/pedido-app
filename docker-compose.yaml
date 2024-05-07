@@ -16,7 +16,7 @@ services:
       - MARIADB_PASSWORD=root
 
   app:
-    image: thiagobsn/lanchonete-app
+    image: thiagobsn/pedido-app
     ports: 
       - 8080:8080
     networks:
