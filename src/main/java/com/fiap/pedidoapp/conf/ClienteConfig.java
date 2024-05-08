@@ -32,11 +32,6 @@ public class ClienteConfig {
     }
 
     @Bean
-    RestTemplate restTemplate() {
-        return new RestTemplate();
-    }
-
-    @Bean
     CognitoClient cognitoClient(RestTemplate restTemplate) {
         return new CognitoRestClient(restTemplate);
     }

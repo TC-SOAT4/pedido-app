@@ -3,6 +3,7 @@ package com.fiap.pedidoapp.application.pedido.usecases;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import com.fiap.pedidoapp.application.pagamento.clients.PagamentoClient;
 import com.fiap.pedidoapp.application.pedido.gateways.PedidoGateway;
 import com.fiap.pedidoapp.domain.cliente.entity.Cliente;
 import com.fiap.pedidoapp.domain.pedido.entity.Item;
@@ -16,8 +17,11 @@ public class RealizarCheckout {
 
     private final PedidoGateway pedidoGateway;
 
-    public RealizarCheckout(PedidoGateway pedidoGateway) {
+    private final PagamentoClient pagamentoClient;
+
+    public RealizarCheckout(PedidoGateway pedidoGateway, PagamentoClient pagamentoClient) {
         this.pedidoGateway = pedidoGateway;
+        this.pagamentoClient = pagamentoClient;
     }
 
     public ResumoPedidoDTO checkout(NovoPedidoDTO novoPedidoDTO) {
@@ -33,6 +37,7 @@ public class RealizarCheckout {
         pedido = pedidoGateway.checkout(pedido);
 
         //TODO Pagamento
+        pagamentoClient.realizarPagamento(pedido.getIdPedido(), pedido.getValorTotal());
 
         return new ResumoPedidoDTO(pedido);
     }
