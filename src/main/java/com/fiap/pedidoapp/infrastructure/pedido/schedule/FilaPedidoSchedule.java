@@ -1,4 +1,4 @@
-package com.fiap.pedidoapp.infrastructure.cliente.schedule;
+package com.fiap.pedidoapp.infrastructure.pedido.schedule;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

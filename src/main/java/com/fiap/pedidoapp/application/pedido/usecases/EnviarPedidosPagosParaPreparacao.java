@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.fiap.pedidoapp.application.pedido.gateways.PedidoGateway;
 import com.fiap.pedidoapp.infrastructure.pedido.persistence.entity.StatusPedidoEntity;
+import com.fiap.pedidoapp.infrastructure.pedido.schedule.dto.ResumoPreparacaoPedidoDTO;
 
 import io.awspring.cloud.sqs.operations.SqsTemplate;
 
@@ -29,10 +30,14 @@ public class EnviarPedidosPagosParaPreparacao {
 
     @Transactional(propagation=Propagation.REQUIRED, rollbackFor={RuntimeException.class})
     public void enviar() {
+        var lista = pedidoGateway.listarPedidosPagos();
 
-         pedidoGateway.listarPedidosPagos().stream().forEach(pedido -> {
-            pedidoGateway.atualizarStatusPedido(pedido.getIdPedido(), StatusPedidoEntity.EM_PREPARACAO);
-            sqsTemplate.send(endpoint, MessageBuilder.withPayload(pedido).build());
+        if( lista.isEmpty())
+            return;
+
+        lista.stream().map(ResumoPreparacaoPedidoDTO::new).forEach(resumoPedido -> {
+            pedidoGateway.atualizarStatusPedido(resumoPedido.getIdPedido(), StatusPedidoEntity.EM_PREPARACAO);
+            sqsTemplate.send(endpoint, MessageBuilder.withPayload(resumoPedido).build());
          });
          
     }
