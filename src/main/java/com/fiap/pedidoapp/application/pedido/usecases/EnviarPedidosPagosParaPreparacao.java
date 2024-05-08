@@ -19,7 +19,7 @@ public class EnviarPedidosPagosParaPreparacao {
 
     private final SqsTemplate sqsTemplate;
 
-    @Value("${cloud.aws.end-point.uri}")
+    @Value("${aws.sqs.uri}")
     private String endpoint;
 
     public EnviarPedidosPagosParaPreparacao(PedidoGateway pedidoGateway, SqsTemplate sqsTemplate) {
@@ -31,8 +31,8 @@ public class EnviarPedidosPagosParaPreparacao {
     public void enviar() {
 
          pedidoGateway.listarPedidosPagos().stream().forEach(pedido -> {
-            sqsTemplate.send(endpoint, MessageBuilder.withPayload(pedido).build());
             pedidoGateway.atualizarStatusPedido(pedido.getIdPedido(), StatusPedidoEntity.EM_PREPARACAO);
+            sqsTemplate.send(endpoint, MessageBuilder.withPayload(pedido).build());
          });
          
     }

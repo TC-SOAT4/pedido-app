@@ -130,12 +130,7 @@ public class PedidoRepositoryGateway implements PedidoGateway {
 
     @Override
     public void atualizarStatusPedido(Integer id, Integer idNovoStatus) {
-        PedidoEntity pedido = pedidoRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException(MSG_PEDIDO_NAO_ENCONTRADO + id));
-
-        pedido.setStatusPedido(StatusPedidoEntity.builder().idStatusPedido(idNovoStatus).build());
-
-        pedidoRepository.save(pedido);
+        pedidoRepository.updateStatusByCdPedido( id, StatusPedidoEntity.builder().idStatusPedido(idNovoStatus).build());
     }
 
     @Override
