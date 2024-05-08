@@ -63,9 +63,11 @@ $ docker-compose up --build
 | Código  |  Descrição |
 | ------------ | ------------ |
 | 1  | Recebido  |
-| 2  | Em preparação  |
-| 3  | Pronto  |
-| 4  | Finalizado  |
+| 2  | Aguardando pagamento  |
+| 3  | Pago  |
+| 4  | Em preparação  |
+| 5  | Pronto  |
+| 6  | Finalizado  |
 
 
 ##### Clientes
