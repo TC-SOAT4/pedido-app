@@ -14,6 +14,7 @@ import com.fiap.pedidoapp.domain.pedido.entity.Item;
 import com.fiap.pedidoapp.domain.pedido.entity.Pedido;
 import com.fiap.pedidoapp.infrastructure.cliente.controllers.dto.ClienteResponseDTO;
 import com.fiap.pedidoapp.infrastructure.cliente.persistence.entity.ClienteEntity;
+import com.fiap.pedidoapp.infrastructure.pedido.enums.StatusPedidoEnum;
 import com.fiap.pedidoapp.infrastructure.pedido.persistence.entity.ItemEntity;
 import com.fiap.pedidoapp.infrastructure.pedido.persistence.entity.PedidoEntity;
 import com.fiap.pedidoapp.infrastructure.pedido.persistence.entity.StatusPedidoEntity;
@@ -57,7 +58,7 @@ public class PedidoRepositoryGateway implements PedidoGateway {
     public Pedido checkout(Pedido pedido) {
         PedidoEntity novoPedido = PedidoEntity.builder()
                 .data(LocalDateTime.now())
-                .statusPedido(StatusPedidoEntity.builder().idStatusPedido(StatusPedidoEntity.RECEBIDO).build())
+                .statusPedido(StatusPedidoEntity.builder().idStatusPedido(StatusPedidoEnum.RECEBIDO.getCodigo()).build())
                 .build();
 
         if (pedido.getCliente() != null && pedido.getCliente().getCpf() != null
@@ -137,7 +138,7 @@ public class PedidoRepositoryGateway implements PedidoGateway {
     @Transactional(readOnly = true)
     public List<Pedido> listarPedidosPagos() {
 
-        return pedidoRepository.findAllByStatusPedidoIdStatusPedido(StatusPedidoEntity.PAGO).stream().map( pedido -> {
+        return pedidoRepository.findAllByStatusPedidoIdStatusPedido(StatusPedidoEnum.PAGO.getCodigo()).stream().map( pedido -> {
             return new Pedido(pedido);
         }).toList();
     }

@@ -5,6 +5,7 @@ import java.time.format.DateTimeFormatter;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fiap.pedidoapp.domain.pedido.entity.Pedido;
+import com.fiap.pedidoapp.infrastructure.pedido.enums.StatusPedidoEnum;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -30,15 +31,19 @@ public class PedidoListaDTO {
     }
 
     public int getStatusOrder() {
-        switch (statusPedido.toLowerCase()) {
-            case "pronto":
+        switch (StatusPedidoEnum.getFromDescricao(statusPedido)) {
+            case PRONTO:
                 return 0;
-            case "em preparação":
+            case EM_PREPARACAO:
                 return 1;
-            case "recebido":
+            case PAGO:
                 return 2;
-            default:
+            case AGUARDANDO_PAGAMENTO:
                 return 3;
+            case RECEBIDO:
+                return 4;
+            default:
+                return 5;
         }
     }
 

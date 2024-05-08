@@ -32,6 +32,8 @@ public class RealizarCheckout {
                 .build();
         pedido = pedidoGateway.checkout(pedido);
 
+        //TODO Pagamento
+
         return new ResumoPedidoDTO(pedido);
     }
 

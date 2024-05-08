@@ -18,7 +18,7 @@ public class FilaPedidoSchedule {
 
     private final EnviarPedidosPagosParaPreparacao enviarPedidosPagosParaPreparacao;
 
-    @Scheduled(fixedDelay = 5000)
+    // @Scheduled(fixedDelay = 5000)
     public void enviarPedidoParaFila() {
         logger.info("Iniciando envio");
         enviarPedidosPagosParaPreparacao.enviar();

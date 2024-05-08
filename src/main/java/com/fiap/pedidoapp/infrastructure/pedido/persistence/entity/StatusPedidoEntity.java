@@ -18,12 +18,6 @@ import lombok.NoArgsConstructor;
 @Table(name = "StatusPedido")
 public class StatusPedidoEntity {
 
-    public static final Integer RECEBIDO = 1;
-    public static final Integer PAGO = 2;
-    public static final Integer EM_PREPARACAO = 3;
-    public static final Integer PRONTO = 4;
-    public static final Integer FINALIZADO = 5;
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idStatusPedido;
