@@ -140,6 +140,11 @@
 				<version>0.8.11</version>
 			</plugin>
 		</plugins>
+		<resources>
+			<resource>
+				<directory>aws</directory>
+			</resource>
+		</resources>
 	</build>
 
 	<profiles>
