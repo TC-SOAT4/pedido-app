@@ -143,6 +143,7 @@
 		<resources>
 			<resource>
 				<directory>aws</directory>
+				<targetPath>aws</targetPath>
 			</resource>
 		</resources>
 	</build>
