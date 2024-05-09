@@ -126,7 +126,6 @@ curl --request GET \
 
 **SQS**
 
-- É necessário substituir as credências de acesso na pasta `aws` na raiz do projeto. Alterar o nome do profile para `fiap`.
 
 
 
