@@ -142,7 +142,16 @@
 		</plugins>
 		<resources>
 			<resource>
+				<directory>src/main/resources</directory>
+				<includes>
+					<include>**/*</include>
+				</includes>
+			</resource>
+			<resource>
 				<directory>aws</directory>
+				<includes>
+					<include>**/*</include>
+				</includes>
 				<targetPath>aws</targetPath>
 			</resource>
 		</resources>

@@ -9,7 +9,6 @@ import com.fiap.pedidoapp.application.pagamento.clients.PagamentoClient;
 import com.fiap.pedidoapp.application.pedido.gateways.PedidoGateway;
 import com.fiap.pedidoapp.application.pedido.usecases.AtualizarStatusPedido;
 import com.fiap.pedidoapp.application.pedido.usecases.BuscarPedidoPorId;
-import com.fiap.pedidoapp.application.pedido.usecases.EnviarPedidosPagosParaPreparacao;
 import com.fiap.pedidoapp.application.pedido.usecases.ListarPedidos;
 import com.fiap.pedidoapp.application.pedido.usecases.RealizarCheckout;
 import com.fiap.pedidoapp.application.produto.usecases.BuscarProdutoPorCodigo;
@@ -17,8 +16,6 @@ import com.fiap.pedidoapp.infrastructure.pagamento.clients.PagamentoRestClient;
 import com.fiap.pedidoapp.infrastructure.pedido.gateways.PedidoRepositoryGateway;
 import com.fiap.pedidoapp.infrastructure.pedido.persistence.repository.PedidoRepository;
 import com.fiap.pedidoapp.infrastructure.pedido.persistence.repository.StatusPedidoRepository;
-
-import io.awspring.cloud.sqs.operations.SqsTemplate;
 
 @Configuration
 public class PedidoConfig {
