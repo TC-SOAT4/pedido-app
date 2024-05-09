@@ -16,14 +16,14 @@ public class FilaPedidoSchedule {
 
     Logger logger = LoggerFactory.getLogger(FilaPedidoSchedule.class);
 
-    private final EnviarPedidosPagosParaPreparacao enviarPedidosPagosParaPreparacao;
+    // private final EnviarPedidosPagosParaPreparacao enviarPedidosPagosParaPreparacao;
 
     //TODO iniciar envio para fila
     
     // @Scheduled(fixedDelay = 5000)
     public void enviarPedidoParaFila() {
         logger.info("Iniciando envio");
-        enviarPedidosPagosParaPreparacao.enviar();
+        // enviarPedidosPagosParaPreparacao.enviar();
     }
 
 }

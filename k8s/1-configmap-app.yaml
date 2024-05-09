@@ -6,4 +6,5 @@ data:
   SPRING_DATASOURCE_URL: jdbc:mariadb://rds-fiap-tech-challenge.cbl891k9286k.us-east-1.rds.amazonaws.com/pedidodb
   SPRING_JPA_SHOW: "true"
   SPRING_JPA_PROPERTIES_HIBERNATE_FORMAT_SQL: "true"
+  AWS_SQS_URI: https://sqs.us-east-1.amazonaws.com/797459365217/teste.fifo
   
