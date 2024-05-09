@@ -53,12 +53,6 @@ public class PedidoConfig {
     }
 
     @Bean
-    EnviarPedidosPagosParaPreparacao enviarPedidosPagosParaPreparacao(PedidoGateway pedidoGateway,
-            SqsTemplate sqsTemplate) {
-        return new EnviarPedidosPagosParaPreparacao(pedidoGateway, sqsTemplate);
-    }
-
-    @Bean
     PagamentoClient pagamentoClient(RestTemplate restTemplate) {
         return new PagamentoRestClient(restTemplate);
     }
