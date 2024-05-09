@@ -46,6 +46,26 @@ spec:
                 configMapKeyRef:
                   name: configmap-app
                   key: SPRING_JPA_PROPERTIES_HIBERNATE_FORMAT_SQL
+            - name: AWS_SQS_URI
+              valueFrom:
+              configMapKeyRef:
+                name: configmap-app
+                key: AWS_SQS_URI
+            - name: AWS_ACCESSKEYID
+              valueFrom:
+              configMapKeyRef:
+                name: configmap-app
+                key: AWS_ACCESSKEYID
+            - name: AWS_SECRETACCESSKEY
+              valueFrom:
+              configMapKeyRef:
+                name: configmap-app
+                key: AWS_SECRETACCESSKEY
+            - name: AWS_SESSIONTOKEN
+              valueFrom:
+              configMapKeyRef:
+                name: configmap-app
+                key: AWS_SESSIONTOKEN
           livenessProbe:
             httpGet:
               path: /pedido-app/actuator/health/liveness
