@@ -3,6 +3,7 @@ package com.fiap.pedidoapp.application.pedido.usecases;
 import com.fiap.pedidoapp.application.pedido.gateways.PedidoGateway;
 
 public class AtualizarStatusPedido {
+
     private final PedidoGateway pedidoGateway;
 
     public AtualizarStatusPedido(PedidoGateway pedidoGateway) {
@@ -10,6 +11,6 @@ public class AtualizarStatusPedido {
     }
 
     public void atualizarStatusPedido(Integer id, String novoStatus) {
-        this.pedidoGateway.atualizarStatusPedido(id, novoStatus);
+        pedidoGateway.atualizarStatusPedido(id, novoStatus);
     }
 }

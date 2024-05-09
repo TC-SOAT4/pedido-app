@@ -45,8 +45,6 @@ public class PedidoRepositoryGateway implements PedidoGateway {
         this.statusPedidoRepository = statusPedidoRepository;
     }
 
-    
-
     @Override
     @Transactional(readOnly = true)
     public List<Pedido> listarPedidos() {
@@ -58,7 +56,8 @@ public class PedidoRepositoryGateway implements PedidoGateway {
     public Pedido checkout(Pedido pedido) {
         PedidoEntity novoPedido = PedidoEntity.builder()
                 .data(LocalDateTime.now())
-                .statusPedido(StatusPedidoEntity.builder().idStatusPedido(StatusPedidoEnum.RECEBIDO.getCodigo()).build())
+                .statusPedido(
+                        StatusPedidoEntity.builder().idStatusPedido(StatusPedidoEnum.RECEBIDO.getCodigo()).build())
                 .build();
 
         if (pedido.getCliente() != null && pedido.getCliente().getCpf() != null
@@ -87,10 +86,10 @@ public class PedidoRepositoryGateway implements PedidoGateway {
     }
 
     private BigDecimal calcularValorTotalPedido(List<ItemEntity> itens) {
-        return itens.stream().map(item -> 
-            item.getProduto().getValor().multiply(BigDecimal.valueOf(item.getQuantidade()))
-        ).reduce(BigDecimal.ZERO, (totalPedido, valorTotalItem) -> totalPedido.add(valorTotalItem)).setScale(2,
-                RoundingMode.HALF_UP);
+        return itens.stream()
+                .map(item -> item.getProduto().getValor().multiply(BigDecimal.valueOf(item.getQuantidade())))
+                .reduce(BigDecimal.ZERO, (totalPedido, valorTotalItem) -> totalPedido.add(valorTotalItem)).setScale(2,
+                        RoundingMode.HALF_UP);
     }
 
     private List<ItemEntity> montarListaDeItens(List<Item> itens) {
@@ -131,16 +130,17 @@ public class PedidoRepositoryGateway implements PedidoGateway {
 
     @Override
     public void atualizarStatusPedido(Integer id, Integer idNovoStatus) {
-        pedidoRepository.updateStatusByCdPedido( id, StatusPedidoEntity.builder().idStatusPedido(idNovoStatus).build());
+        pedidoRepository.updateStatusByCdPedido(id, StatusPedidoEntity.builder().idStatusPedido(idNovoStatus).build());
     }
 
     @Override
     @Transactional(readOnly = true)
     public List<Pedido> listarPedidosPagos() {
 
-        return pedidoRepository.findAllByStatusPedidoIdStatusPedido(StatusPedidoEnum.PAGO.getCodigo()).stream().map( pedido -> {
-            return new Pedido(pedido);
-        }).toList();
+        return pedidoRepository.findAllByStatusPedidoIdStatusPedido(StatusPedidoEnum.PAGO.getCodigo()).stream()
+                .map(pedido -> {
+                    return new Pedido(pedido);
+                }).toList();
     }
 
 }

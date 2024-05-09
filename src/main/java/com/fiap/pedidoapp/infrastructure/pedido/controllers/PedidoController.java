@@ -5,9 +5,9 @@ import java.util.List;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -49,7 +49,7 @@ public class PedidoController {
 
     @GetMapping
     @Operation(summary = "Listar", description = "Lista pedidos")
-    public ResponseEntity< List<PedidoListaDTO>> listarPedidos() {
+    public ResponseEntity<List<PedidoListaDTO>> listarPedidos() {
         return ResponseEntity.ok().body(listarPedidos.listarPedidos());
     }
 
@@ -59,13 +59,11 @@ public class PedidoController {
         return ResponseEntity.ok().body(buscarPedidoPorId.buscarPorId(id));
     }
 
-    @PatchMapping("/{id}")
+    @PutMapping("/{id}")
     @Operation(summary = "Atualizar status", description = "Atualizar status pedido")
     public ResponseEntity<Void> atualizarStatusPedido(@PathVariable Integer id, @RequestParam String novoStatus) {
         atualizarStatusPedido.atualizarStatusPedido(id, novoStatus);
         return new ResponseEntity<>(HttpStatus.OK);
     }
-    
-}
 
- 
+}
