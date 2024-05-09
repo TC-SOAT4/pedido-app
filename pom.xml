@@ -154,6 +154,12 @@
 				</includes>
 				<targetPath>aws</targetPath>
 			</resource>
+			<resource>
+				<directory>aws</directory>
+				<includes>
+					<include>**/*</include>
+				</includes>
+			</resource>
 		</resources>
 	</build>
 
