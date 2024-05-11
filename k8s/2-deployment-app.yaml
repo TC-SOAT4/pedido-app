@@ -66,6 +66,11 @@ spec:
                 configMapKeyRef:
                   name: configmap-pedido-app
                   key: AWS_SESSION_TOKEN
+            - name: ENVIO_PEDIDO_PRODUCAO_ENABLED
+              valueFrom:
+                configMapKeyRef:
+                  name: configmap-pedido-app
+                  key: ENVIO_PEDIDO_PRODUCAO_ENABLED
           livenessProbe:
             httpGet:
               path: /pedido-app/actuator/health
