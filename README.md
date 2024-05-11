@@ -126,6 +126,11 @@ curl --request GET \
 
 **SQS**
 
+- Para realizar o envio dos pedidos `Pagos` para produção é necessario setar o valor `true` na propertie `envio.pedido.producao.enabled`.
+
+
+
+
 
 
 

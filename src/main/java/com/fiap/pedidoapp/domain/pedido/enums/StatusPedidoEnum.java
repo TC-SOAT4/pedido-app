@@ -1,4 +1,4 @@
-package com.fiap.pedidoapp.infrastructure.pedido.enums;
+package com.fiap.pedidoapp.domain.pedido.enums;
 
 import java.util.Arrays;
 import java.util.Optional;

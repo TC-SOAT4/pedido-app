@@ -5,7 +5,7 @@ import java.time.format.DateTimeFormatter;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fiap.pedidoapp.domain.pedido.entity.Pedido;
-import com.fiap.pedidoapp.infrastructure.pedido.enums.StatusPedidoEnum;
+import com.fiap.pedidoapp.domain.pedido.enums.StatusPedidoEnum;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
