@@ -35,6 +35,10 @@ jobs:
     name: SonarCloud
     needs: test
     runs-on: ubuntu-latest
+    
+    env:
+      AWS_REGION: us-east-1
+
     steps:
       - uses: actions/checkout@v2
         with:
