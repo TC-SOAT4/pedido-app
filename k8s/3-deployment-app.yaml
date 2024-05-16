@@ -46,6 +46,11 @@ spec:
                 configMapKeyRef:
                   name: configmap-pedido-app
                   key: SPRING_JPA_PROPERTIES_HIBERNATE_FORMAT_SQL
+            - name: URI_API_PAGAMENTO
+              valueFrom:
+                configMapKeyRef:
+                  name: configmap-pedido-app
+                  key: URI_API_PAGAMENTO
             - name: AWS_SQS_URI
               valueFrom:
                 configMapKeyRef:
@@ -54,17 +59,17 @@ spec:
             - name: AWS_ACCESS_KEY_ID
               valueFrom:
                 configMapKeyRef:
-                  name: configmap-pedido-app
+                  name: configmap-aws
                   key: AWS_ACCESS_KEY_ID
             - name: AWS_SECRET_ACCESS_KEY
               valueFrom:
                 configMapKeyRef:
-                  name: configmap-pedido-app
+                  name: configmap-aws
                   key: AWS_SECRET_ACCESS_KEY
             - name: AWS_SESSION_TOKEN
               valueFrom:
                 configMapKeyRef:
-                  name: configmap-pedido-app
+                  name: configmap-aws
                   key: AWS_SESSION_TOKEN
             - name: ENVIO_PEDIDO_PRODUCAO_ENABLED
               valueFrom:
