@@ -2,34 +2,39 @@ package com.fiap.pedidoapp.infrastructure.pagamento.clients;
 
 import java.math.BigDecimal;
 
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
 import com.fiap.pedidoapp.application.pagamento.clients.PagamentoClient;
+import com.fiap.pedidoapp.infrastructure.pagamento.clients.dto.PagamentoResponse;
+import com.fiap.pedidoapp.infrastructure.pagamento.clients.dto.RealizarPagamentoRequest;
 
-public class PagamentoRestClient implements PagamentoClient{
+public class PagamentoRestClient implements PagamentoClient {
 
-    public static final String URI_PAGAMENTO = "localhost:8082/pagamento-app/api/pagamento";
+    @Value("${uri.api.pagamento}")
+    private String uriApiPagamento;
 
-     private final RestTemplate restTemplate;
+    private final RestTemplate restTemplate;
 
-    public PagamentoRestClient(RestTemplate restTemplate){
+    public PagamentoRestClient(RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
     }
 
-
     @Override
-    public void realizarPagamento(Integer idPedido, BigDecimal valor) {
+    public PagamentoResponse realizarPagamento(Integer idPedido, BigDecimal valor) {
 
-        return;
+        try {
+            RealizarPagamentoRequest request = new RealizarPagamentoRequest(idPedido, valor);
 
-        // RealizarPagamentoRequest request = new RealizarPagamentoRequest(idPedido, valor);
+            ResponseEntity<PagamentoResponse> response = restTemplate.postForEntity(uriApiPagamento,
+                    new HttpEntity<>(request), PagamentoResponse.class);
 
-        // ResponseEntity<String> response = restTemplate.postForEntity(URI_PAGAMENTO,  new HttpEntity<>(request), String.class);
-        
-        // if(response.getStatusCode().is2xxSuccessful())
-        //     return;
-
-        // throw new RuntimeException("Não foi possivel realizar a tentiva de pagamento");
+            return  response.getBody() != null ? response.getBody() : null;
+        } catch (Exception e) {
+            return null;
+        }
     }
 
 }

@@ -4,6 +4,6 @@ import com.fiap.pedidoapp.infrastructure.pedido.schedule.dto.ResumoPreparacaoPed
 
 public interface PedidoMessageClient {
 
-    public void enviarPedidoParaFilaDeProducao(ResumoPreparacaoPedidoDTO ResumoPreparacaoPedidoDTO);
+    public void enviarPedidoParaFilaDeProducao(ResumoPreparacaoPedidoDTO resumoPreparacaoPedidoDTO);
 
 }

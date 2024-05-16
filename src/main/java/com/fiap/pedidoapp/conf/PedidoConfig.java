@@ -11,6 +11,7 @@ import com.fiap.pedidoapp.application.pedido.usecases.AtualizarStatusPedido;
 import com.fiap.pedidoapp.application.pedido.usecases.BuscarPedidoPorId;
 import com.fiap.pedidoapp.application.pedido.usecases.ListarPedidos;
 import com.fiap.pedidoapp.application.pedido.usecases.RealizarCheckout;
+import com.fiap.pedidoapp.application.pedido.usecases.RealizarPagamento;
 import com.fiap.pedidoapp.application.produto.usecases.BuscarProdutoPorCodigo;
 import com.fiap.pedidoapp.infrastructure.pagamento.clients.PagamentoRestClient;
 import com.fiap.pedidoapp.infrastructure.pedido.gateways.PedidoRepositoryGateway;
@@ -21,8 +22,13 @@ import com.fiap.pedidoapp.infrastructure.pedido.persistence.repository.StatusPed
 public class PedidoConfig {
 
     @Bean
-    RealizarCheckout realizarCheckout(PedidoGateway pedidoGateway, PagamentoClient pagamentoClient) {
-        return new RealizarCheckout(pedidoGateway, pagamentoClient);
+    RealizarCheckout realizarCheckout(PedidoGateway pedidoGateway, RealizarPagamento realizarPagamento) {
+        return new RealizarCheckout(pedidoGateway, realizarPagamento);
+    }
+
+    @Bean
+    RealizarPagamento realizarPagamento(PedidoGateway pedidoGateway, PagamentoClient pagamentoClient) {
+        return new RealizarPagamento(pedidoGateway, pagamentoClient);
     }
 
     @Bean

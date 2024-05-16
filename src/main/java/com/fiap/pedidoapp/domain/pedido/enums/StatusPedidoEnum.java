@@ -3,6 +3,8 @@ package com.fiap.pedidoapp.domain.pedido.enums;
 import java.util.Arrays;
 import java.util.Optional;
 
+import com.fiap.pedidoapp.exceptions.PedidoException;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -29,7 +31,7 @@ public enum StatusPedidoEnum {
         if (statuOptional.isPresent())
             return statuOptional.get();
 
-        throw new RuntimeException("Status não encontrado");
+        throw new PedidoException("Status não encontrado");
     }
 
 }

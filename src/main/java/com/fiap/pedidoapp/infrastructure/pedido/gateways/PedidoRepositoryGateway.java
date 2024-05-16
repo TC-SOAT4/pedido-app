@@ -13,6 +13,7 @@ import com.fiap.pedidoapp.application.produto.usecases.BuscarProdutoPorCodigo;
 import com.fiap.pedidoapp.domain.pedido.entity.Item;
 import com.fiap.pedidoapp.domain.pedido.entity.Pedido;
 import com.fiap.pedidoapp.domain.pedido.enums.StatusPedidoEnum;
+import com.fiap.pedidoapp.exceptions.PedidoException;
 import com.fiap.pedidoapp.infrastructure.cliente.controllers.dto.ClienteResponseDTO;
 import com.fiap.pedidoapp.infrastructure.cliente.persistence.entity.ClienteEntity;
 import com.fiap.pedidoapp.infrastructure.pedido.persistence.entity.ItemEntity;
@@ -73,7 +74,7 @@ public class PedidoRepositoryGateway implements PedidoGateway {
         BigDecimal valorTotalPedido = calcularValorTotalPedido(itens);
         novoPedido.setValorTotal(valorTotalPedido);
 
-        novoPedido = pedidoRepository.save(novoPedido);
+        novoPedido = pedidoRepository.saveAndFlush(novoPedido);
         return new Pedido(novoPedido);
     }
 
@@ -88,7 +89,7 @@ public class PedidoRepositoryGateway implements PedidoGateway {
     private BigDecimal calcularValorTotalPedido(List<ItemEntity> itens) {
         return itens.stream()
                 .map(item -> item.getProduto().getValor().multiply(BigDecimal.valueOf(item.getQuantidade())))
-                .reduce(BigDecimal.ZERO, (totalPedido, valorTotalItem) -> totalPedido.add(valorTotalItem)).setScale(2,
+                .reduce(BigDecimal.ZERO, BigDecimal::add).setScale(2,
                         RoundingMode.HALF_UP);
     }
 
@@ -110,7 +111,7 @@ public class PedidoRepositoryGateway implements PedidoGateway {
 
     public Pedido buscarPorId(Integer id) {
         PedidoEntity pedido = pedidoRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException(MSG_PEDIDO_NAO_ENCONTRADO + id));
+                .orElseThrow(() -> new PedidoException(MSG_PEDIDO_NAO_ENCONTRADO + id));
 
         return new Pedido(pedido);
     }
@@ -118,10 +119,10 @@ public class PedidoRepositoryGateway implements PedidoGateway {
     @Override
     public void atualizarStatusPedido(Integer id, String descricaoNovoStatus) {
         PedidoEntity pedido = pedidoRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException(MSG_PEDIDO_NAO_ENCONTRADO + id));
+                .orElseThrow(() -> new PedidoException(MSG_PEDIDO_NAO_ENCONTRADO + id));
 
         StatusPedidoEntity statusPedido = statusPedidoRepository.findByDescricao(descricaoNovoStatus)
-                .orElseThrow(() -> new RuntimeException("Status do pedido inválido: " + descricaoNovoStatus));
+                .orElseThrow(() -> new PedidoException("Status do pedido inválido: " + descricaoNovoStatus));
 
         pedido.setStatusPedido(statusPedido);
 
@@ -138,9 +139,7 @@ public class PedidoRepositoryGateway implements PedidoGateway {
     public List<Pedido> listarPedidosPagos() {
 
         return pedidoRepository.findAllByStatusPedidoIdStatusPedido(StatusPedidoEnum.PAGO.getCodigo()).stream()
-                .map(pedido -> {
-                    return new Pedido(pedido);
-                }).toList();
+                .map(Pedido::new).toList();
     }
 
 }

@@ -1,17 +1,19 @@
 package com.fiap.pedidoapp.infrastructure.pagamento.clients.dto;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-@AllArgsConstructor
-public class RealizarPagamentoRequest {
+public class PagamentoResponse {
 
-    private Integer idPedido; 
+    private String id;
+    private Integer idPedido;
     private BigDecimal valor;
+    private String statusPagamento;
+    private LocalDateTime data;
 
 }

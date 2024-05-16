@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.fiap.pedidoapp.application.produto.gateways.ProdutoGateway;
 import com.fiap.pedidoapp.domain.produto.entity.Produto;
+import com.fiap.pedidoapp.exceptions.PedidoException;
 import com.fiap.pedidoapp.infrastructure.produto.persistence.entity.CategoriaEntity;
 import com.fiap.pedidoapp.infrastructure.produto.persistence.entity.ProdutoEntity;
 import com.fiap.pedidoapp.infrastructure.produto.persistence.repository.ProdutoRepository;
@@ -65,7 +66,7 @@ public class ProdutoRepositoryGateway implements ProdutoGateway {
     @Override
     public Produto buscarPorCodigo(Integer codigoProduto) {
         ProdutoEntity produto = produtoRepository.findById(codigoProduto)
-                .orElseThrow(() -> new RuntimeException("Produto não encontrado"));
+                .orElseThrow(() -> new PedidoException("Produto não encontrado"));
         return new Produto(produto);
     }
 
