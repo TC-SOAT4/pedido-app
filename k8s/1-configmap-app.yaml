@@ -8,4 +8,4 @@ data:
   SPRING_JPA_PROPERTIES_HIBERNATE_FORMAT_SQL: "true"
   AWS_SQS_URI: https://sqs.us-east-1.amazonaws.com/797459365217/lanchonete-producao-queue.fifo
   ENVIO_PEDIDO_PRODUCAO_ENABLED: "true"
-  URI_API_PAGAMENTO: http://svc-pagamento-app/pagamentos
+  URI_API_PAGAMENTO: http://svc-pagamento-app/pagamento-app/pagamentos
