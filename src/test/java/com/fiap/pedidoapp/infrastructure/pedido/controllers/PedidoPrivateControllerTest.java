@@ -1,5 +1,6 @@
 package com.fiap.pedidoapp.infrastructure.pedido.controllers;
 
+import com.fiap.pedidoapp.TestHelper;
 import com.fiap.pedidoapp.application.pedido.usecases.RealizarCheckout;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

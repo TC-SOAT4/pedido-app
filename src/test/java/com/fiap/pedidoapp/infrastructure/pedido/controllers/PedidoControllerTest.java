@@ -1,5 +1,6 @@
 package com.fiap.pedidoapp.infrastructure.pedido.controllers;
 
+import com.fiap.pedidoapp.TestHelper;
 import com.fiap.pedidoapp.application.pedido.usecases.AtualizarStatusPedido;
 import com.fiap.pedidoapp.application.pedido.usecases.BuscarPedidoPorId;
 import com.fiap.pedidoapp.application.pedido.usecases.ListarPedidos;
