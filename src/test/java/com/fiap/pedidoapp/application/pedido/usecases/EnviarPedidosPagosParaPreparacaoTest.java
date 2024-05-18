@@ -26,6 +26,9 @@ public class EnviarPedidosPagosParaPreparacaoTest {
     @Mock
     private PedidoGateway pedidoGateway;
 
+    @Mock
+    private PedidoMessageClient pedidoMessageClient;
+
     @Test
     public void enviarPedidoWithListIsEmpty() {
         when(pedidoGateway.listarPedidosPagos()).thenReturn(new ArrayList<>());
