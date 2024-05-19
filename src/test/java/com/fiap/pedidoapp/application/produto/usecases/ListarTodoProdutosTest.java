@@ -2,7 +2,6 @@ package com.fiap.pedidoapp.application.produto.usecases;
 
 import com.fiap.pedidoapp.application.produto.gateways.ProdutoGateway;
 import com.fiap.pedidoapp.domain.produto.entity.Produto;
-import com.fiap.pedidoapp.infrastructure.produto.controllers.dto.ProdutoResponse;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -18,13 +17,13 @@ import java.util.List;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(SpringExtension.class)
-class BuscarProdutosPorCategoriaTest {
+public class ListarTodoProdutosTest {
 
     @Mock
     private ProdutoGateway produtoGateway;
 
     @InjectMocks
-    private BuscarProdutosPorCategoria buscarProdutosPorCategoria;
+    private ListarTodoProdutos listarTodoProdutos;
 
     @BeforeEach
     void setUp() {
@@ -32,34 +31,27 @@ class BuscarProdutosPorCategoriaTest {
     }
 
     @Test
-    void findByCategoria() {
-        buscarProdutosPorCategoria.buscarPorCategoria(123);
-    }
-
-    @Test
-    void shouldFindByCategoriaWithNotEmpty() {
-        Integer idCategoria = 10;
+    void shouldListAllProducts() {
+        // Configuração
         Produto produto1 = new Produto();
         produto1.setIdProduto(1);
         produto1.setNome("Produto 1");
-        produto1.setValor(new BigDecimal(100));
+        produto1.setValor(new BigDecimal(100.00));
 
         Produto produto2 = new Produto();
         produto2.setIdProduto(2);
         produto2.setNome("Produto 2");
-        produto2.setValor(new BigDecimal(100));
+        produto2.setValor(new BigDecimal(100.00));
 
         List<Produto> produtos = Arrays.asList(produto1, produto2);
-        when(produtoGateway.buscarPorCategoria(idCategoria)).thenReturn(produtos);
+        when(produtoGateway.listarTodos()).thenReturn(produtos);
 
-        List<ProdutoResponse> resultado = buscarProdutosPorCategoria.buscarPorCategoria(idCategoria);
+        listarTodoProdutos.listarTodos();
     }
 
     @Test
-    void shouldFindByCategoriaWithEmpty() {
-        Integer idCategoria = 99;
-        when(produtoGateway.buscarPorCategoria(idCategoria)).thenReturn(List.of());
-        List<ProdutoResponse> resultado = buscarProdutosPorCategoria.buscarPorCategoria(idCategoria);
-
+    void shoulAllProductsWhenListIsEmpty() {
+        when(produtoGateway.listarTodos()).thenReturn(List.of());
+        listarTodoProdutos.listarTodos();
     }
 }
