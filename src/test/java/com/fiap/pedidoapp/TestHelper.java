@@ -1,5 +1,10 @@
 package com.fiap.pedidoapp;
 
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
+import java.util.Arrays;
+import java.util.List;
+
 import com.fiap.pedidoapp.domain.cliente.entity.Cliente;
 import com.fiap.pedidoapp.domain.pedido.entity.Item;
 import com.fiap.pedidoapp.domain.pedido.entity.Pedido;
@@ -14,16 +19,6 @@ import com.fiap.pedidoapp.infrastructure.pedido.persistence.entity.PedidoEntity;
 import com.fiap.pedidoapp.infrastructure.pedido.persistence.entity.StatusPedidoEntity;
 import com.fiap.pedidoapp.infrastructure.produto.controllers.dto.ProdutoResponse;
 import com.fiap.pedidoapp.infrastructure.produto.persistence.entity.ProdutoEntity;
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
-
-import java.math.BigDecimal;
-import java.time.LocalDateTime;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
 
 public class TestHelper {
 

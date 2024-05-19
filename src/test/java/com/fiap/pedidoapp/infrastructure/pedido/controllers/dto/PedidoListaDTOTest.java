@@ -1,13 +1,16 @@
 package com.fiap.pedidoapp.infrastructure.pedido.controllers.dto;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
+
+import org.junit.jupiter.api.Test;
+
 import com.fiap.pedidoapp.TestHelper;
 import com.fiap.pedidoapp.domain.cliente.entity.Cliente;
 import com.fiap.pedidoapp.domain.pedido.entity.Pedido;
 import com.fiap.pedidoapp.domain.pedido.entity.StatusPedido;
-import org.junit.jupiter.api.Test;
-
-import java.math.BigDecimal;
-import java.time.LocalDateTime;
 
 class PedidoListaDTOTest {
 
@@ -25,6 +28,8 @@ class PedidoListaDTOTest {
         PedidoListaDTO pedidoListaDTO = new PedidoListaDTO(pedido);
 
         var result = pedidoListaDTO.getStatusOrder();
+
+        assertEquals(4, result);
     }
 
     @Test
@@ -41,6 +46,8 @@ class PedidoListaDTOTest {
         PedidoListaDTO pedidoListaDTO = new PedidoListaDTO(pedido);
 
         var result = pedidoListaDTO.getStatusOrder();
+
+        assertEquals(3, result);
     }
 
     @Test
@@ -57,6 +64,8 @@ class PedidoListaDTOTest {
         PedidoListaDTO pedidoListaDTO = new PedidoListaDTO(pedido);
 
         var result = pedidoListaDTO.getStatusOrder();
+
+        assertEquals(2, result);
     }
 
     @Test
@@ -73,6 +82,8 @@ class PedidoListaDTOTest {
         PedidoListaDTO pedidoListaDTO = new PedidoListaDTO(pedido);
 
         var result = pedidoListaDTO.getStatusOrder();
+
+        assertEquals(1, result);
     }
 
     @Test
@@ -89,6 +100,8 @@ class PedidoListaDTOTest {
         PedidoListaDTO pedidoListaDTO = new PedidoListaDTO(pedido);
 
         var result = pedidoListaDTO.getStatusOrder();
+
+        assertEquals(0, result);
     }
 
     @Test
@@ -105,6 +118,9 @@ class PedidoListaDTOTest {
         PedidoListaDTO pedidoListaDTO = new PedidoListaDTO(pedido);
 
         var result = pedidoListaDTO.getStatusOrder();
+
+        assertEquals(5, result);
+
     }
 
 }
