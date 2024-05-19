@@ -18,6 +18,7 @@
 		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
 		<sonar.organization>tc-soat4</sonar.organization>
 		<sonar.projectKey>TC-SOAT4_pedido-app</sonar.projectKey>
+		<sonar.coverage.exclusions>**/conf/*</sonar.coverage.exclusions>
 	</properties>
 	<distributionManagement>
 		<repository>
