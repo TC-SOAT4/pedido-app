@@ -73,7 +73,7 @@ public class TestHelper {
     public static Pedido getPedido() {
         return Pedido.builder()
                 .idPedido(123)
-                .statusPedido(StatusPedido.builder().idStatusPedido(123).descricao("descricao").build())
+                .statusPedido(StatusPedido.builder().idStatusPedido(1).descricao("Recebido").build())
                 .cliente(Cliente.builder().build())
                 .valorTotal(BigDecimal.valueOf(250))
                 .itens(TestHelper.getItensPedido())
