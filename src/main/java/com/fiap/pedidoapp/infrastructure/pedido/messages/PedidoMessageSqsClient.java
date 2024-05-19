@@ -1,5 +1,7 @@
 package com.fiap.pedidoapp.infrastructure.pedido.messages;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.stereotype.Component;
@@ -18,6 +20,8 @@ public class PedidoMessageSqsClient implements PedidoMessageClient {
 
     private ObjectMapper objectMapper;
 
+    Logger logger = LoggerFactory.getLogger(PedidoMessageSqsClient.class);
+
     @Value("${aws.sqs.uri}")
     private String endpoint;
 
@@ -32,7 +36,7 @@ public class PedidoMessageSqsClient implements PedidoMessageClient {
             String json = objectMapper.writeValueAsString(resumo);
             sqsTemplate.send(endpoint, MessageBuilder.withPayload(json).build());
         } catch (JsonProcessingException e) {
-            e.printStackTrace();
+            logger.error(e.getMessage(), e);
         }
     }
 }
