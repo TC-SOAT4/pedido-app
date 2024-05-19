@@ -1,7 +1,6 @@
 package com.fiap.pedidoapp.infrastructure.pedido.gateways;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -24,7 +23,6 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import com.fiap.pedidoapp.TestHelper;
 import com.fiap.pedidoapp.application.cliente.usecases.BuscarClientePorCpf;
 import com.fiap.pedidoapp.application.produto.usecases.BuscarProdutoPorCodigo;
-import com.fiap.pedidoapp.domain.pedido.enums.StatusPedidoEnum;
 import com.fiap.pedidoapp.infrastructure.pedido.persistence.entity.PedidoEntity;
 import com.fiap.pedidoapp.infrastructure.pedido.persistence.entity.StatusPedidoEntity;
 import com.fiap.pedidoapp.infrastructure.pedido.persistence.repository.PedidoRepository;
