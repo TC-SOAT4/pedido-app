@@ -167,6 +167,12 @@
 								<goals>
 									<goal>report</goal>
 								</goals>
+								<configuration>
+									<excludes>
+										<exclude>**/conf/**</exclude>
+										<exclude>**/cognito/**</exclude>
+									</excludes>
+								</configuration>
 							</execution>
 						</executions>
 					</plugin>

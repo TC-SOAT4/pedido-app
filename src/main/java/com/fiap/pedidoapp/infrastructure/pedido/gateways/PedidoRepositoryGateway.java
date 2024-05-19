@@ -78,7 +78,7 @@ public class PedidoRepositoryGateway implements PedidoGateway {
         return new Pedido(novoPedido);
     }
 
-    private ClienteEntity buscarClientePorCPF(String cpf) {
+    public ClienteEntity buscarClientePorCPF(String cpf) {
         ClienteResponseDTO clienteDTO = buscarClientePorCpf.buscarPorCpf(cpf);
         return clienteDTO != null ? ClienteEntity.builder()
                 .idCliente(clienteDTO.getIdCliente())

@@ -1,6 +1,7 @@
 package com.fiap.pedidoapp.infrastructure.pedido.gateways;
 
 import com.fiap.pedidoapp.TestHelper;
+import com.fiap.pedidoapp.application.cliente.usecases.BuscarClientePorCpf;
 import com.fiap.pedidoapp.application.produto.usecases.BuscarProdutoPorCodigo;
 import com.fiap.pedidoapp.infrastructure.pedido.persistence.entity.PedidoEntity;
 import com.fiap.pedidoapp.infrastructure.pedido.persistence.entity.StatusPedidoEntity;
@@ -23,6 +24,9 @@ import static org.mockito.Mockito.when;
 
 @ExtendWith(SpringExtension.class)
 class PedidoRepositoryGatewayTest {
+    @Mock
+    private BuscarClientePorCpf buscarClientePorCpf;
+
     @Mock
     private StatusPedidoRepository statusPedidoRepository;
 
@@ -68,5 +72,10 @@ class PedidoRepositoryGatewayTest {
     @Test
     void listarPedidosPagos() {
         var result = pedidoRepositoryGateway.listarPedidosPagos();
+    }
+
+    @Test
+    void buscarClientePorCPF() {
+        var result = pedidoRepositoryGateway.buscarClientePorCPF("1234");
     }
 }
