@@ -2,6 +2,7 @@ package com.fiap.pedidoapp.infrastructure.produto.controllers;
 
 import java.util.List;
 
+import com.fiap.pedidoapp.application.produto.usecases.*;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,11 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.fiap.pedidoapp.application.produto.usecases.BuscarProdutosPorCategoria;
-import com.fiap.pedidoapp.application.produto.usecases.CriarProduto;
-import com.fiap.pedidoapp.application.produto.usecases.EditarProduto;
-import com.fiap.pedidoapp.application.produto.usecases.ListarTodoProdutos;
-import com.fiap.pedidoapp.application.produto.usecases.RemoverProduto;
 import com.fiap.pedidoapp.infrastructure.produto.controllers.dto.CadastroProdutoRequest;
 import com.fiap.pedidoapp.infrastructure.produto.controllers.dto.EditarProdutoRequest;
 import com.fiap.pedidoapp.infrastructure.produto.controllers.dto.ProdutoResponse;
@@ -38,6 +34,13 @@ public class ProdutoController {
     private final RemoverProduto removerProduto;
     private final ListarTodoProdutos listarTodoProdutos;
     private final BuscarProdutosPorCategoria buscarProdutosPorCategoria;
+    private final BuscarProdutoPorCodigo buscarProdutoPorCodigo;
+
+    @GetMapping("/{id}")
+    @Operation(summary = "Buscar por id", description = "buscar um produto por id")
+    public ResponseEntity<ProdutoResponse> buscarPorId(@PathVariable(name = "id") Integer idProduto) {
+        return ResponseEntity.ok().body(buscarProdutoPorCodigo.buscarPorCodigo(idProduto));
+    }
 
     @GetMapping
     @Operation(summary = "Listar todos", description = "listar todos os produtos")
