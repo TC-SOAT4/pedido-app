@@ -1,0 +1,38 @@
+{
+  "$schema": "http://json-schema.org/draft-06/schema#",
+  "title": "Produto Response",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "idProduto": {
+      "type": "integer"
+    },
+    "nome": {
+      "type": "string"
+    },
+    "descricao": {
+      "type": "string"
+    },
+    "valor": {
+      "type": "number"
+    },
+    "ativo": {
+      "type": "boolean"
+    },
+    "categoria": {
+      "idCategoria": {
+        "type": "integer"
+      },
+      "nome": {
+        "type": "string"
+      },
+      "ativo": {
+        "type": "boolean"
+      }
+    }
+  },
+  "required": [
+    "idProduto",
+    "nome"
+  ]
+}
