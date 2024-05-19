@@ -6,13 +6,15 @@ import com.fiap.pedidoapp.infrastructure.produto.persistence.entity.ProdutoEntit
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
+@Getter
+@Setter
 public class Produto {
 
     private Integer idProduto;

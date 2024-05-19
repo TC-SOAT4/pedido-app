@@ -4,9 +4,11 @@ import java.util.List;
 
 import com.fiap.pedidoapp.domain.pedido.entity.Pedido;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 public class ResumoPreparacaoPedidoDTO {
 
     private Integer idPedido;

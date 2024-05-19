@@ -2,9 +2,11 @@ package com.fiap.pedidoapp.infrastructure.pedido.schedule.dto;
 
 import com.fiap.pedidoapp.domain.pedido.entity.Item;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 public class ResumoPreparacaoItemDTO {
 
     private String nome;

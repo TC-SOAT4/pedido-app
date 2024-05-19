@@ -4,9 +4,11 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonAlias;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 public class GetUserResponse {
 
     @JsonAlias("Username")

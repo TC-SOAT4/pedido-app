@@ -10,9 +10,11 @@ import com.fiap.pedidoapp.domain.pedido.entity.Pedido;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 @Builder
 @AllArgsConstructor
 @JsonInclude(Include.NON_NULL)

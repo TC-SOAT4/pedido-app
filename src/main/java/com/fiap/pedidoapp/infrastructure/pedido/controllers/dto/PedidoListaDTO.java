@@ -9,9 +9,11 @@ import com.fiap.pedidoapp.domain.pedido.enums.StatusPedidoEnum;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 @Builder
 @AllArgsConstructor
 @JsonInclude(Include.NON_NULL)
