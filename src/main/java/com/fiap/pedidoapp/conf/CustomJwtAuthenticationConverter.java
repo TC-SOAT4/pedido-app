@@ -35,15 +35,13 @@ public class CustomJwtAuthenticationConverter implements Converter<Jwt, Abstract
 
         @SuppressWarnings("unchecked")
         List<String> roles = (List<String>) source.getClaims().get(COGNITO_GROUPS);
-        System.out.println(source.getClaims().toString());
         
         if(roles == null || roles.isEmpty())
             return new JwtAuthenticationToken(source, Arrays.asList(new SimpleGrantedAuthority("ROLE_CLIENTE")), username);
 
         // Create authorities from roles.
         List<SimpleGrantedAuthority> authorities = roles.stream()
-                .map(role -> new SimpleGrantedAuthority("ROLE_" + role))
-                .collect(Collectors.toList());
+                .map(role -> new SimpleGrantedAuthority("ROLE_" + role)).toList();
                 
         return new JwtAuthenticationToken(source, authorities, username);
   

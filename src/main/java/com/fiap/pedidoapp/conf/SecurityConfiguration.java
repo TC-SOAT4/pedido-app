@@ -1,6 +1,5 @@
 package com.fiap.pedidoapp.conf;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.Customizer;
@@ -10,12 +9,14 @@ import org.springframework.security.config.annotation.web.configurers.AbstractHt
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 
+import lombok.RequiredArgsConstructor;
+
 @Configuration
 @EnableWebSecurity
+@RequiredArgsConstructor
 public class SecurityConfiguration {
 
-    @Autowired
-    private CustomJwtAuthenticationConverter authenticationConverter;
+    private final CustomJwtAuthenticationConverter authenticationConverter;
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -28,9 +29,8 @@ public class SecurityConfiguration {
                 .anyRequest().permitAll()
                 )
                 .oauth2ResourceServer(oauth2 ->oauth2
-                .jwt(jwt -> {
-                            jwt.jwtAuthenticationConverter(authenticationConverter); // Necessary to convert AWS Cognito claim "cognito:groups" into ROLES
-                        }
+                .jwt(jwt -> 
+                            jwt.jwtAuthenticationConverter(authenticationConverter) // Necessary to convert AWS Cognito claim "cognito:groups" into ROLES
                 )
         )
         .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
