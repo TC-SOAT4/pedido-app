@@ -15,6 +15,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import java.math.BigDecimal;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(SpringExtension.class)
@@ -44,7 +45,7 @@ class EditarProdutoTest {
                 .ativo(editarProdutoRequest.getAtivo())
                 .build();
 
-        when(produtoGateway.editar(produto)).thenReturn(produto);
+        when(produtoGateway.editar(any(Produto.class))).thenReturn(produto);
 
         var result = editarProduto.editar(editarProdutoRequest);
     }

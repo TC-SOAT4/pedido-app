@@ -12,6 +12,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.math.BigDecimal;
 
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(SpringExtension.class)
@@ -38,7 +39,7 @@ class CriarProdutoTest {
                 .ativo(Boolean.TRUE)
                 .build();
 
-        when(produtoGateway.cadastrar(novoProduto)).thenReturn(novoProduto);
+        when(produtoGateway.cadastrar(any(Produto.class))).thenReturn(novoProduto);
 
         var result = criarProduto.cadastrar(cadastroProdutoRequest);
     }
