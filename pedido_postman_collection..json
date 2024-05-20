@@ -1,0 +1,679 @@
+{
+  "info": {
+    "name": "Tech Challenge 4 - Pedido API",
+    "_postman_id": "1cd34229-0d09-45b9-b18b-1418be0a7a35",
+    "description": "Pedido API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Produtos",
+      "description": "",
+      "item": [
+        {
+          "id": "37a67e18-6149-4452-940f-c8a07e226e1d",
+          "name": "listarTodos",
+          "request": {
+            "url": {
+              "protocol": "http",
+              "host": "ab7d59acf6470481dac365713d4ea9e8-1008832294.us-east-1.elb.amazonaws.com",
+              "path": [
+                "pedido-app",
+                "api/produtos"
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "*/*",
+                "disabled": false
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "disabled": false
+            },
+            "description": "listar todos os produtos"
+          },
+          "response": [
+            {
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json",
+                  "disabled": false
+                }
+              ],
+              "body": "[\r\n  {\r\n    \"idProduto\": 172,\r\n    \"nome\": \"nome17\",\r\n    \"descricao\": \"descricao41\",\r\n    \"valor\": 72.7822085878729,\r\n    \"ativo\": true,\r\n    \"categoria\": {\r\n      \"idCategoria\": 118,\r\n      \"nome\": \"nome13\",\r\n      \"ativo\": true\r\n    }\r\n  }\r\n]",
+              "status": "OK",
+              "code": 200,
+              "name": "Response_200",
+              "id": "855cc6ba-9012-437f-b07a-6b3804fb3e1b"
+            }
+          ]
+        },
+        {
+          "id": "ca253867-3f94-4b98-9398-35c0f9983268",
+          "name": "editarProduto",
+          "request": {
+            "url": {
+              "protocol": "http",
+              "host": "ab7d59acf6470481dac365713d4ea9e8-1008832294.us-east-1.elb.amazonaws.com",
+              "path": [
+                "pedido-app",
+                "api/produtos"
+              ]
+            },
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "description": "",
+                "disabled": false
+              },
+              {
+                "key": "Accept",
+                "value": "*/*",
+                "disabled": false
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"idProduto\": 172,\r\n  \"nome\": \"nome17\",\r\n  \"descricao\": \"descricao41\",\r\n  \"valor\": 72.7822085878729,\r\n  \"categoria\": {\r\n    \"idCategoria\": 140,\r\n    \"nome\": \"nome21\",\r\n    \"ativo\": false\r\n  },\r\n  \"ativo\": true\r\n}",
+              "disabled": false
+            },
+            "description": "Editar os dados de um produto cadastrado"
+          },
+          "response": [
+            {
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json",
+                  "disabled": false
+                }
+              ],
+              "body": "{\r\n  \"idProduto\": 172,\r\n  \"nome\": \"nome17\",\r\n  \"descricao\": \"descricao41\",\r\n  \"valor\": 72.7822085878729,\r\n  \"ativo\": true,\r\n  \"categoria\": {\r\n    \"idCategoria\": 118,\r\n    \"nome\": \"nome13\",\r\n    \"ativo\": true\r\n  }\r\n}",
+              "status": "OK",
+              "code": 200,
+              "name": "Response_200",
+              "id": "43ead45d-9ac6-459a-b7d1-f42a9a5ab2f0"
+            }
+          ]
+        },
+        {
+          "id": "780c58af-fb0d-4676-9f12-8a145288e482",
+          "name": "cadastrarNovoProduto",
+          "request": {
+            "url": {
+              "protocol": "http",
+              "host": "ab7d59acf6470481dac365713d4ea9e8-1008832294.us-east-1.elb.amazonaws.com",
+              "path": [
+                "pedido-app",
+                "api/produtos"
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "description": "",
+                "disabled": false
+              },
+              {
+                "key": "Accept",
+                "value": "*/*",
+                "disabled": false
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"nome\": \"nome66\",\r\n  \"descricao\": \"descricao17\",\r\n  \"valor\": 142.579549447438,\r\n  \"codigoCategoria\": 72\r\n}",
+              "disabled": false
+            },
+            "description": "Cadastrar um novo produto"
+          },
+          "response": [
+            {
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json",
+                  "disabled": false
+                }
+              ],
+              "body": "{\r\n  \"idProduto\": 172,\r\n  \"nome\": \"nome17\",\r\n  \"descricao\": \"descricao41\",\r\n  \"valor\": 72.7822085878729,\r\n  \"ativo\": true,\r\n  \"categoria\": {\r\n    \"idCategoria\": 118,\r\n    \"nome\": \"nome13\",\r\n    \"ativo\": true\r\n  }\r\n}",
+              "status": "OK",
+              "code": 200,
+              "name": "Response_200",
+              "id": "9c45bb60-86d3-41cf-adf3-8f9577507ecd"
+            }
+          ]
+        },
+        {
+          "id": "20b551dc-6b3b-4f42-b743-5aafc1faddb4",
+          "name": "buscarPorId",
+          "request": {
+            "url": {
+              "protocol": "http",
+              "host": "ab7d59acf6470481dac365713d4ea9e8-1008832294.us-east-1.elb.amazonaws.com",
+              "path": [
+                "pedido-app",
+                "api/produtos/:id"
+              ],
+              "variable": [
+                {
+                  "id": "id",
+                  "key": "id",
+                  "value": "172",
+                  "type": "string",
+                  "description": ""
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "*/*",
+                "disabled": false
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "disabled": false
+            },
+            "description": "buscar um produto por id"
+          },
+          "response": [
+            {
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json",
+                  "disabled": false
+                }
+              ],
+              "body": "{\r\n  \"idProduto\": 172,\r\n  \"nome\": \"nome17\",\r\n  \"descricao\": \"descricao41\",\r\n  \"valor\": 72.7822085878729,\r\n  \"ativo\": true,\r\n  \"categoria\": {\r\n    \"idCategoria\": 118,\r\n    \"nome\": \"nome13\",\r\n    \"ativo\": true\r\n  }\r\n}",
+              "status": "OK",
+              "code": 200,
+              "name": "Response_200",
+              "id": "c43ac27c-4d0f-4e67-9bb7-a01cf36bd9fb"
+            }
+          ]
+        },
+        {
+          "id": "c050c45f-3d57-4f44-93b3-c4acb7518592",
+          "name": "removerProduto",
+          "request": {
+            "url": {
+              "protocol": "http",
+              "host": "ab7d59acf6470481dac365713d4ea9e8-1008832294.us-east-1.elb.amazonaws.com",
+              "path": [
+                "pedido-app",
+                "api/produtos/:id"
+              ],
+              "variable": [
+                {
+                  "id": "id",
+                  "key": "id",
+                  "value": "172",
+                  "type": "string",
+                  "description": ""
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "*/*",
+                "disabled": false
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "disabled": false
+            },
+            "description": "Remover um produto"
+          },
+          "response": [
+            {
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json",
+                  "disabled": false
+                }
+              ],
+              "body": "{\r\n  \"idProduto\": 172,\r\n  \"nome\": \"nome17\",\r\n  \"descricao\": \"descricao41\",\r\n  \"valor\": 72.7822085878729,\r\n  \"ativo\": true,\r\n  \"categoria\": {\r\n    \"idCategoria\": 118,\r\n    \"nome\": \"nome13\",\r\n    \"ativo\": true\r\n  }\r\n}",
+              "status": "OK",
+              "code": 200,
+              "name": "Response_200",
+              "id": "5e85dbe2-4386-4015-9aa9-f4c59cd620d4"
+            }
+          ]
+        },
+        {
+          "id": "7e5ec674-a287-4e02-a69c-558bbbf03347",
+          "name": "buscarPorCategoria",
+          "request": {
+            "url": {
+              "protocol": "http",
+              "host": "ab7d59acf6470481dac365713d4ea9e8-1008832294.us-east-1.elb.amazonaws.com",
+              "path": [
+                "pedido-app",
+                "api/produtos/buscar-por-categoria"
+              ],
+              "query": [
+                {
+                  "key": "codigoCategoria",
+                  "value": "172",
+                  "description": "",
+                  "disabled": false
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "*/*",
+                "disabled": false
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "disabled": false
+            },
+            "description": "Buscar produtos por categoria"
+          },
+          "response": [
+            {
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json",
+                  "disabled": false
+                }
+              ],
+              "body": "[\r\n  {\r\n    \"idProduto\": 172,\r\n    \"nome\": \"nome17\",\r\n    \"descricao\": \"descricao41\",\r\n    \"valor\": 72.7822085878729,\r\n    \"ativo\": true,\r\n    \"categoria\": {\r\n      \"idCategoria\": 118,\r\n      \"nome\": \"nome13\",\r\n      \"ativo\": true\r\n    }\r\n  }\r\n]",
+              "status": "OK",
+              "code": 200,
+              "name": "Response_200",
+              "id": "35f11b24-a05f-46d3-86f0-cbe3e5316139"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Pedidos",
+      "description": "",
+      "item": [
+        {
+          "id": "8e1e3068-2ea2-4484-b8b4-b0480e8ac1c5",
+          "name": "buscar",
+          "request": {
+            "url": {
+              "protocol": "http",
+              "host": "ab7d59acf6470481dac365713d4ea9e8-1008832294.us-east-1.elb.amazonaws.com",
+              "path": [
+                "pedido-app",
+                "api/pedidos/:id"
+              ],
+              "variable": [
+                {
+                  "id": "id",
+                  "key": "id",
+                  "value": "172",
+                  "type": "string",
+                  "description": ""
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "*/*",
+                "disabled": false
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "disabled": false
+            },
+            "description": "Buscar"
+          },
+          "response": [
+            {
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json",
+                  "disabled": false
+                }
+              ],
+              "body": "{\r\n  \"codigoPedido\": 172,\r\n  \"nomeCliente\": \"nomeCliente17\",\r\n  \"valorTotal\": 142.579549447438,\r\n  \"itens\": [\r\n    {\r\n      \"codigoProduto\": 72,\r\n      \"nomeProduto\": \"nomeProduto54\",\r\n      \"quantidade\": 55,\r\n      \"valor\": 34.125055216311,\r\n      \"valorTotal\": 223.606441395174\r\n    }\r\n  ],\r\n  \"statusPedido\": \"statusPedido5\",\r\n  \"dataHoraPedido\": \"dataHoraPedido18\"\r\n}",
+              "status": "OK",
+              "code": 200,
+              "name": "Response_200",
+              "id": "9cc6aefd-71f7-48d5-802e-fe41acdcc3df"
+            }
+          ]
+        },
+        {
+          "id": "d301ee48-ca02-4e75-add3-01b3d28406ed",
+          "name": "atualizarStatusPedido",
+          "request": {
+            "url": {
+              "protocol": "http",
+              "host": "ab7d59acf6470481dac365713d4ea9e8-1008832294.us-east-1.elb.amazonaws.com",
+              "path": [
+                "pedido-app",
+                "api/pedidos/:id"
+              ],
+              "query": [
+                {
+                  "key": "novoStatus",
+                  "value": "novoStatus66",
+                  "description": "",
+                  "disabled": false
+                }
+              ],
+              "variable": [
+                {
+                  "id": "id",
+                  "key": "id",
+                  "value": "172",
+                  "type": "string",
+                  "description": ""
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "*/*",
+                "disabled": false
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "disabled": false
+            },
+            "description": "Atualizar status pedido"
+          },
+          "response": [
+            {
+              "header": [],
+              "status": "OK",
+              "code": 200,
+              "name": "Response_200",
+              "id": "d3f0fd69-4f96-4a08-af3c-ab1faa6b6069"
+            }
+          ]
+        },
+        {
+          "id": "112761ab-8d5d-4290-b58c-8ec605b80d03",
+          "name": "criarNovoPedido",
+          "request": {
+            "url": {
+              "protocol": "http",
+              "host": "ab7d59acf6470481dac365713d4ea9e8-1008832294.us-east-1.elb.amazonaws.com",
+              "path": [
+                "pedido-app",
+                "private/api/pedidos/checkout"
+              ]
+            },
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "description": "",
+                "disabled": false
+              },
+              {
+                "key": "Accept",
+                "value": "*/*",
+                "disabled": false
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"itens\": [\r\n    {\r\n      \"codigoProduto\": 172,\r\n      \"quantidade\": 44\r\n    }\r\n  ]\r\n}",
+              "disabled": false
+            },
+            "description": "Enviar pedido para fila"
+          },
+          "response": [
+            {
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json",
+                  "disabled": false
+                }
+              ],
+              "body": "{\r\n  \"codigoPedido\": 172,\r\n  \"nomeCliente\": \"nomeCliente17\",\r\n  \"valorTotal\": 142.579549447438,\r\n  \"itens\": [\r\n    {\r\n      \"codigoProduto\": 72,\r\n      \"nomeProduto\": \"nomeProduto54\",\r\n      \"quantidade\": 55,\r\n      \"valor\": 34.125055216311,\r\n      \"valorTotal\": 223.606441395174\r\n    }\r\n  ],\r\n  \"statusPedido\": \"statusPedido5\",\r\n  \"dataHoraPedido\": \"dataHoraPedido18\"\r\n}",
+              "status": "OK",
+              "code": 200,
+              "name": "Response_200",
+              "id": "5db4fdf2-8c27-4993-aa63-f5d098487ca8"
+            }
+          ]
+        },
+        {
+          "id": "958ca12d-2ab3-4e28-ab45-9b7528b282a1",
+          "name": "criarNovoPedido_1",
+          "request": {
+            "url": {
+              "protocol": "http",
+              "host": "ab7d59acf6470481dac365713d4ea9e8-1008832294.us-east-1.elb.amazonaws.com",
+              "path": [
+                "pedido-app",
+                "api/pedidos/checkout"
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "description": "",
+                "disabled": false
+              },
+              {
+                "key": "Accept",
+                "value": "*/*",
+                "disabled": false
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"itens\": [\r\n    {\r\n      \"codigoProduto\": 172,\r\n      \"quantidade\": 44\r\n    }\r\n  ]\r\n}",
+              "disabled": false
+            },
+            "description": "Enviar pedido para fila"
+          },
+          "response": [
+            {
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json",
+                  "disabled": false
+                }
+              ],
+              "body": "{\r\n  \"codigoPedido\": 172,\r\n  \"nomeCliente\": \"nomeCliente17\",\r\n  \"valorTotal\": 142.579549447438,\r\n  \"itens\": [\r\n    {\r\n      \"codigoProduto\": 72,\r\n      \"nomeProduto\": \"nomeProduto54\",\r\n      \"quantidade\": 55,\r\n      \"valor\": 34.125055216311,\r\n      \"valorTotal\": 223.606441395174\r\n    }\r\n  ],\r\n  \"statusPedido\": \"statusPedido5\",\r\n  \"dataHoraPedido\": \"dataHoraPedido18\"\r\n}",
+              "status": "OK",
+              "code": 200,
+              "name": "Response_200",
+              "id": "b7a317b1-98e6-44ce-86d0-f29eaca81a18"
+            }
+          ]
+        },
+        {
+          "id": "6f9736c6-8fc0-4827-bf59-224e1d2903ed",
+          "name": "listarPedidos",
+          "request": {
+            "url": {
+              "protocol": "http",
+              "host": "ab7d59acf6470481dac365713d4ea9e8-1008832294.us-east-1.elb.amazonaws.com",
+              "path": [
+                "pedido-app",
+                "api/pedidos"
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "*/*",
+                "disabled": false
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "disabled": false
+            },
+            "description": "Lista pedidos"
+          },
+          "response": [
+            {
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json",
+                  "disabled": false
+                }
+              ],
+              "body": "[\r\n  {\r\n    \"codigoPedido\": 172,\r\n    \"nomeCliente\": {},\r\n    \"statusPedido\": \"statusPedido28\",\r\n    \"dataHoraPedido\": \"dataHoraPedido54\",\r\n    \"statusOrder\": 55\r\n  }\r\n]",
+              "status": "OK",
+              "code": 200,
+              "name": "Response_200",
+              "id": "7affa3f3-1e33-4d0a-bc9c-695102a59c63"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Clientes",
+      "description": "",
+      "item": [
+        {
+          "id": "91a73f81-0a84-42e9-abe1-1ca22c050a90",
+          "name": "cadastrarNovoCliente",
+          "request": {
+            "url": {
+              "protocol": "http",
+              "host": "ab7d59acf6470481dac365713d4ea9e8-1008832294.us-east-1.elb.amazonaws.com",
+              "path": [
+                "pedido-app",
+                "api/clientes"
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "description": "",
+                "disabled": false
+              },
+              {
+                "key": "Accept",
+                "value": "*/*",
+                "disabled": false
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"nome\": \"nome66\",\r\n  \"cpf\": \"cpf17cpf17cpf17cpf17\"\r\n}",
+              "disabled": false
+            },
+            "description": "Cadastrar um novo cliente"
+          },
+          "response": [
+            {
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json",
+                  "disabled": false
+                }
+              ],
+              "body": "{\r\n  \"idCliente\": 172,\r\n  \"nome\": \"nome17\",\r\n  \"cpf\": \"cpf41\",\r\n  \"email\": \"email59\"\r\n}",
+              "status": "OK",
+              "code": 200,
+              "name": "Response_200",
+              "id": "d5aff44f-eaa1-4598-97fb-26c561a8d46d"
+            }
+          ]
+        },
+        {
+          "id": "4046d469-a2e3-4efe-a090-d1649a92b5c0",
+          "name": "buscarPorCpf",
+          "request": {
+            "url": {
+              "protocol": "http",
+              "host": "ab7d59acf6470481dac365713d4ea9e8-1008832294.us-east-1.elb.amazonaws.com",
+              "path": [
+                "pedido-app",
+                "api/clientes/buscar-por-cpf"
+              ],
+              "query": [
+                {
+                  "key": "cpf",
+                  "value": "cpf66",
+                  "description": "",
+                  "disabled": false
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "*/*",
+                "disabled": false
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "disabled": false
+            },
+            "description": "Buscar um cliente utilizando o CPF"
+          },
+          "response": [
+            {
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json",
+                  "disabled": false
+                }
+              ],
+              "body": "{\r\n  \"idCliente\": 172,\r\n  \"nome\": \"nome17\",\r\n  \"cpf\": \"cpf41\",\r\n  \"email\": \"email59\"\r\n}",
+              "status": "OK",
+              "code": 200,
+              "name": "Response_200",
+              "id": "e252a853-acc4-4670-9e31-0b8ac77eab9a"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "variable": []
+}
