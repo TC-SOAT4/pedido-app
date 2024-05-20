@@ -1,10 +1,12 @@
 package com.fiap.pedidoapp.infrastructure.pagamento.clients;
 
 import java.math.BigDecimal;
+import java.util.Collections;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
 
 import com.fiap.pedidoapp.application.pagamento.clients.PagamentoClient;
@@ -27,7 +29,7 @@ public class PagamentoRestClient implements PagamentoClient {
 
         try {
             RealizarPagamentoRequest request = new RealizarPagamentoRequest(idPedido, valor);
-
+            restTemplate.setMessageConverters(Collections.singletonList(new MappingJackson2HttpMessageConverter()));
             ResponseEntity<PagamentoResponse> response = restTemplate.postForEntity(uriApiPagamento,
                     new HttpEntity<>(request), PagamentoResponse.class);
 
