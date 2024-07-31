@@ -26,7 +26,7 @@ public class PedidoStatusListener {
 
     private final ObjectMapper objectMapper;
 
-    @SqsListener("${lanchonete-pedido-status-queue.fifo}")
+    @SqsListener("${aws.sqs.in.pedido.status.pago.name}")
     public void receiveMessage(String json) throws JsonProcessingException {
         var statusPedido = objectMapper.readValue(json,
                 StatusPedidoDTO.class);
