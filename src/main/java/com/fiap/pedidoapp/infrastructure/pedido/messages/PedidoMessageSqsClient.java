@@ -25,10 +25,10 @@ public class PedidoMessageSqsClient implements PedidoMessageClient {
 
     Logger logger = LoggerFactory.getLogger(PedidoMessageSqsClient.class);
 
-    @Value("${aws.sqs.producao.uri}")
+    @Value("${aws.sqs.out.producao.uri}")
     private String endpointProducao;
 
-    @Value("${aws.sqs.pagamento.uri}")
+    @Value("${aws.sqs.out.pagamento.uri}")
     private String endpointPagamento;
 
     public PedidoMessageSqsClient(SqsTemplate sqsTemplate, ObjectMapper objectMapper) {
