@@ -18,7 +18,7 @@ import lombok.RequiredArgsConstructor;
 @Component
 public class PedidoStatusListener {
 
-    Logger logger = LoggerFactory.getLogger(PedidoPagoListener.class);
+    Logger logger = LoggerFactory.getLogger(PedidoStatusListener.class);
 
     private final AtualizarStatusPedido atualizarStatusPedido;
 
