@@ -1,4 +1,4 @@
-package com.fiap.pedidoapp.infrastructure.pagamento.clients.dto;
+package com.fiap.pedidoapp.infrastructure.pedido.messages.dto;
 
 import java.math.BigDecimal;
 

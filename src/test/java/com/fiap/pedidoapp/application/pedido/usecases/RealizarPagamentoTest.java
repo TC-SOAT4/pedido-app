@@ -1,21 +1,23 @@
 package com.fiap.pedidoapp.application.pedido.usecases;
 
-import com.fiap.pedidoapp.application.pagamento.clients.PagamentoClient;
-import com.fiap.pedidoapp.application.pedido.gateways.PedidoGateway;
-import com.fiap.pedidoapp.domain.pedido.entity.Pedido;
-import com.fiap.pedidoapp.domain.pedido.entity.StatusPedido;
-import com.fiap.pedidoapp.domain.pedido.enums.StatusPedidoEnum;
-import com.fiap.pedidoapp.infrastructure.pagamento.clients.dto.PagamentoResponse;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyInt;
+import static org.mockito.Mockito.doNothing;
+
+import java.math.BigDecimal;
+
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.math.BigDecimal;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.when;
+import com.fiap.pedidoapp.application.pedido.gateways.PedidoGateway;
+import com.fiap.pedidoapp.application.pedido.messages.PedidoMessageClient;
+import com.fiap.pedidoapp.domain.pedido.entity.Pedido;
+import com.fiap.pedidoapp.domain.pedido.entity.StatusPedido;
+import com.fiap.pedidoapp.domain.pedido.enums.StatusPedidoEnum;
 
 @ExtendWith(MockitoExtension.class)
 class RealizarPagamentoTest {
@@ -27,7 +29,7 @@ class RealizarPagamentoTest {
     private PedidoGateway pedidoGateway;
 
     @Mock
-    private PagamentoClient pagamentoClient;
+    private PedidoMessageClient pedidoMessageClient;
 
     @Test
     void testAtualizaStatusPago() {
@@ -36,8 +38,7 @@ class RealizarPagamentoTest {
         pedido.setValorTotal(new BigDecimal(100));
         pedido.setStatusPedido(StatusPedido.builder().idStatusPedido(1).descricao(StatusPedidoEnum.PAGO.getDescricao()).build());
 
-        when(pagamentoClient.realizarPagamento(pedido.getIdPedido(), pedido.getValorTotal()))
-                .thenReturn(new PagamentoResponse());
+        doNothing().when(pedidoMessageClient).enviarPedidoParaFilaDePagamento(anyInt(), any(BigDecimal.class));
 
         realizarPagamento.pagar(pedido);
 
@@ -52,11 +53,7 @@ class RealizarPagamentoTest {
         pedido.setValorTotal(new BigDecimal(100));
         pedido.setStatusPedido(StatusPedido.builder().idStatusPedido(1).descricao(StatusPedidoEnum.PAGO.getDescricao()).build());
 
-        var pagamentoResponse = new PagamentoResponse();
-        pagamentoResponse.setStatusPagamento("Aprovado");
-
-        when(pagamentoClient.realizarPagamento(pedido.getIdPedido(), pedido.getValorTotal()))
-                .thenReturn(pagamentoResponse);
+        doNothing().when(pedidoMessageClient).enviarPedidoParaFilaDePagamento(anyInt(), any(BigDecimal.class));
 
         realizarPagamento.pagar(pedido);
 
@@ -71,8 +68,7 @@ class RealizarPagamentoTest {
         pedido.setValorTotal(new BigDecimal(100));
         pedido.setStatusPedido(StatusPedido.builder().idStatusPedido(1).descricao(StatusPedidoEnum.AGUARDANDO_PAGAMENTO.getDescricao()).build());
 
-        when(pagamentoClient.realizarPagamento(pedido.getIdPedido(), pedido.getValorTotal()))
-                .thenReturn(null);
+        doNothing().when(pedidoMessageClient).enviarPedidoParaFilaDePagamento(anyInt(), any(BigDecimal.class));
 
         realizarPagamento.pagar(pedido);
 

@@ -2,10 +2,8 @@ package com.fiap.pedidoapp.conf;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.client.RestTemplate;
 
 import com.fiap.pedidoapp.application.cliente.usecases.BuscarClientePorCpf;
-import com.fiap.pedidoapp.application.pagamento.clients.PagamentoClient;
 import com.fiap.pedidoapp.application.pedido.gateways.PedidoGateway;
 import com.fiap.pedidoapp.application.pedido.usecases.AtualizarStatusPedido;
 import com.fiap.pedidoapp.application.pedido.usecases.BuscarPedidoPorId;
@@ -13,7 +11,6 @@ import com.fiap.pedidoapp.application.pedido.usecases.ListarPedidos;
 import com.fiap.pedidoapp.application.pedido.usecases.RealizarCheckout;
 import com.fiap.pedidoapp.application.pedido.usecases.RealizarPagamento;
 import com.fiap.pedidoapp.application.produto.usecases.BuscarProdutoPorCodigo;
-import com.fiap.pedidoapp.infrastructure.pagamento.clients.PagamentoRestClient;
 import com.fiap.pedidoapp.infrastructure.pedido.gateways.PedidoRepositoryGateway;
 import com.fiap.pedidoapp.infrastructure.pedido.persistence.repository.PedidoRepository;
 import com.fiap.pedidoapp.infrastructure.pedido.persistence.repository.StatusPedidoRepository;
@@ -24,11 +21,6 @@ public class PedidoConfig {
     @Bean
     RealizarCheckout realizarCheckout(PedidoGateway pedidoGateway, RealizarPagamento realizarPagamento) {
         return new RealizarCheckout(pedidoGateway, realizarPagamento);
-    }
-
-    @Bean
-    RealizarPagamento realizarPagamento(PedidoGateway pedidoGateway, PagamentoClient pagamentoClient) {
-        return new RealizarPagamento(pedidoGateway, pagamentoClient);
     }
 
     @Bean
@@ -53,11 +45,6 @@ public class PedidoConfig {
             StatusPedidoRepository statusPedidoRepository) {
         return new PedidoRepositoryGateway(buscarClientePorCpf, buscarProdutoPorCodigo, pedidoRepository,
                 statusPedidoRepository);
-    }
-
-    @Bean
-    PagamentoClient pagamentoClient(RestTemplate restTemplate) {
-        return new PagamentoRestClient(restTemplate);
     }
 
 }
