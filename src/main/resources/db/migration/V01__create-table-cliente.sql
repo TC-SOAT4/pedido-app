@@ -4,6 +4,8 @@ CREATE TABLE Cliente (
     cpf VARCHAR(11) NOT NULL,
     email VARCHAR(255) NULL,
     ativo BIT DEFAULT 1 NOT NULL,
+    endereco VARCHAR(255) NULL,
+    telefone VARCHAR(20) NULL,
     UNIQUE (cpf),
     UNIQUE (email),
     PRIMARY KEY (idCliente)

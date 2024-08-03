@@ -16,11 +16,12 @@ import lombok.Setter;
 public class Cliente {
 
     private Integer idCliente;
-
     private String nome;
     private String cpf;
     private String email;
     private Boolean ativo;
+    private String endereco;
+    private String telefone;
 
     public Cliente(ClienteEntity clienteEntity) {
         this.idCliente = clienteEntity.getIdCliente();
@@ -28,6 +29,7 @@ public class Cliente {
         this.cpf = clienteEntity.getCpf();
         this.email = clienteEntity.getEmail();
         this.ativo = clienteEntity.getAtivo();
+        this.endereco = clienteEntity.getEndereco();
+        this.telefone = clienteEntity.getTelefone();
     }
-
 }

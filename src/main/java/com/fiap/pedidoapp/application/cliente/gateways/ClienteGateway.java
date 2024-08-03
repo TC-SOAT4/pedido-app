@@ -2,9 +2,17 @@ package com.fiap.pedidoapp.application.cliente.gateways;
 
 import com.fiap.pedidoapp.domain.cliente.entity.Cliente;
 
+import java.util.Optional;
+
 public interface ClienteGateway {
 
-    public Cliente buscarPorCpf(String cpf);
+    Cliente buscarPorCpf(String cpf);
 
-    public Cliente cadatrarCliente(Cliente cliente);
+    Cliente cadatrarCliente(Cliente cliente);
+
+    Optional<Cliente> findById(Integer id);
+
+    Cliente save(Cliente cliente);
+
+    void delete(Cliente cliente);
 }

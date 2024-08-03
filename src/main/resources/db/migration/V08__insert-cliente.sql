@@ -1,2 +1,2 @@
-INSERT INTO Cliente (nome, cpf, ativo) VALUES ('Home Simpson', '12345678901', 1);
-INSERT INTO Cliente (nome, cpf, ativo) VALUES ('Bart Simpson', '12345678920', 1);
+INSERT INTO Cliente (nome, cpf, ativo, email, endereco, telefone) VALUES ('Home Simpson', '12345678901', 1, 'Rua dos bobos, 300', '(11)999999999');
+INSERT INTO Cliente (nome, cpf, ativo, email, endereco, telefone) VALUES ('Bart Simpson', '12345678920', 1, 'Rua dos espertos, 100', '(11)999999991');

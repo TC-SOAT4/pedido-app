@@ -1,12 +1,11 @@
-version: '1'
+version: '3.8'
 services:
-
   database:
     image: thiagobsn/mariadb-lanchonete
-    ports: 
+    ports:
       - 3306:3306
     networks:
-      -  app-network
+      - app-network
     volumes:
       - mariadb:/var/lib/mysql
     environment:
@@ -15,30 +14,48 @@ services:
       - MARIADB_USER=mariadb
       - MARIADB_PASSWORD=root
 
+  localstack:
+    image: localstack/localstack
+    ports:
+      - "4566:4566"
+      - "4571:4571"
+    networks:
+      - app-network
+    environment:
+      - SERVICES=sqs
+      - DEBUG=1
+      - AWS_ACCESS_KEY_ID=test
+      - AWS_SECRET_ACCESS_KEY=test
+    volumes:
+      - "./localstack:/var/lib/localstack/data"
+
   app:
     image: thiagobsn/pedido-app
-    ports: 
+    ports:
       - 8080:8080
     networks:
       - app-network
-    depends_on: 
+    depends_on:
       - database
+      - localstack
     links:
       - database
+      - localstack
     environment:
       - SPRING_DATASOURCE_URL=jdbc:mariadb://database:3306/lanchonetedb
       - SPRING_DATASOURCE_PASSWORD=root
       - SPRING_DATASOURCE_USERNAME=mariadb
-      - SPRING_JPA_SHOW-SQL=true
+      - SPRING_JPA_SHOW_SQL=true
       - SPRING_JPA_PROPERTIES_HIBERNATE_FORMAT_SQL=true
-   
+      - AWS_REGION=us-east-1
+      - ENVIO_PEDIDO_PRODUCAO_ENABLED=false
+      - CLOUD_AWS_SQS_ENDPOINT=http://localstack:4566
+      - AWS_ACCESS_KEY_ID=test
+      - AWS_SECRET_ACCESS_KEY=test
+
 networks:
   app-network:
     driver: bridge
 
 volumes:
-    mariadb: {}
-
-
-   
-    
+  mariadb: {}
