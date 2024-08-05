@@ -57,11 +57,4 @@ public class ClienteRepositoryGateway implements ClienteGateway {
         clienteEntity.setTelefone(cliente.getTelefone());
         return new Cliente(clienteRepository.save(clienteEntity));
     }
-
-    @Override
-    public void delete(Cliente cliente) {
-        ClienteEntity clienteEntity = new ClienteEntity();
-        clienteEntity.setIdCliente(cliente.getIdCliente());
-        clienteRepository.delete(clienteEntity);
-    }
 }

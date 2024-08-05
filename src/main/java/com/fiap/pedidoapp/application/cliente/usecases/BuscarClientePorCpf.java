@@ -12,9 +12,11 @@ public class BuscarClientePorCpf {
         this.clienteGateway = clienteGateway;
     }
 
-    public ClienteResponseDTO buscarPorCpf(String cpf){
+    public ClienteResponseDTO buscarPorCpf(String cpf) {
         Cliente cliente = clienteGateway.buscarPorCpf(cpf);
-        return cliente != null ? new ClienteResponseDTO(cliente) : null;
+        if (cliente == null || !Boolean.TRUE.equals(cliente.getAtivo())) {
+            return null;
+        }
+        return new ClienteResponseDTO(cliente);
     }
-
 }

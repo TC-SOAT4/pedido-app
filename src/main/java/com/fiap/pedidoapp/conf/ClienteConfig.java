@@ -9,7 +9,6 @@ import com.fiap.pedidoapp.application.cliente.usecases.BuscarClientePorCpf;
 import com.fiap.pedidoapp.application.cliente.usecases.CadastrarCliente;
 import com.fiap.pedidoapp.application.cliente.usecases.CadastrarClientePeloToken;
 import com.fiap.pedidoapp.application.cliente.usecases.InativarCliente;
-import com.fiap.pedidoapp.application.cliente.usecases.ExcluirCliente;
 import com.fiap.pedidoapp.application.cognito.clients.CognitoClient;
 import com.fiap.pedidoapp.infrastructure.cliente.gateways.ClienteRepositoryGateway;
 import com.fiap.pedidoapp.infrastructure.cliente.persistence.repository.ClienteRepository;
@@ -31,11 +30,6 @@ public class ClienteConfig {
     @Bean
     InativarCliente inativarCliente(ClienteGateway clienteGateway) {
         return new InativarCliente(clienteGateway);
-    }
-
-    @Bean
-    ExcluirCliente excluirCliente(ClienteGateway clienteGateway) {
-        return new ExcluirCliente(clienteGateway);
     }
 
     @Bean
