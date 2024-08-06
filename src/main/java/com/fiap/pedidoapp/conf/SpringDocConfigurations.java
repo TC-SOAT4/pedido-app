@@ -22,7 +22,7 @@ public class SpringDocConfigurations {
     public OpenAPI customOpenAPI() {
         return new OpenAPI()
                 .info(new Info()
-                        .title("Tech Challenge 4 - Pedido API")
+                        .title("Tech Challenge 5 - Pedido API")
                         .description(
                                 "Pedido API")
                         .contact(new Contact()
