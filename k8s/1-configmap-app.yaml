@@ -3,7 +3,7 @@ kind: ConfigMap
 metadata:
   name: configmap-pedido-app
 data:
-  SPRING_DATASOURCE_URL: jdbc:mariadb://rds-fiap-tech-challenge.cbl891k9286k.us-east-1.rds.amazonaws.com:3306/pedidodb
+  SPRING_DATASOURCE_URL: jdbc:mariadb://rds-fiap-tech-challenge.czedzxpic1u6.us-east-1.rds.amazonaws.com:3306/pedidodb
   SPRING_JPA_SHOW: "true"
   SPRING_JPA_PROPERTIES_HIBERNATE_FORMAT_SQL: "true"
   AWS_SQS_OUT_PRODUCAO_URI: https://sqs.us-east-1.amazonaws.com/786426553713/lanchonete-producao-queue.fifo
