@@ -51,11 +51,21 @@ spec:
                 configMapKeyRef:
                   name: configmap-pedido-app
                   key: URI_API_PAGAMENTO
-            - name: AWS_SQS_URI
+            - name: AWS_SQS_OUT_PRODUCAO_URI
               valueFrom:
                 configMapKeyRef:
                   name: configmap-pedido-app
-                  key: AWS_SQS_URI
+                  key: AWS_SQS_OUT_PRODUCAO_URI
+            - name: AWS_SQS_OUT_PAGAMENTO_URI
+              valueFrom:
+                configMapKeyRef:
+                  name: configmap-pedido-app
+                  key: AWS_SQS_OUT_PAGAMENTO_URI
+            - name: AWS_SQS_IN_PEDIDO_STATUS_PAGO_NAME
+              valueFrom:
+                configMapKeyRef:
+                  name: configmap-pedido-app
+                  key: AWS_SQS_IN_PEDIDO_STATUS_PAGO_NAME
             - name: AWS_ACCESS_KEY_ID
               valueFrom:
                 configMapKeyRef:

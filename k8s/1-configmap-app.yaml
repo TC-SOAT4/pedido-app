@@ -6,6 +6,8 @@ data:
   SPRING_DATASOURCE_URL: jdbc:mariadb://rds-fiap-tech-challenge.cbl891k9286k.us-east-1.rds.amazonaws.com:3306/pedidodb
   SPRING_JPA_SHOW: "true"
   SPRING_JPA_PROPERTIES_HIBERNATE_FORMAT_SQL: "true"
-  AWS_SQS_URI: https://sqs.us-east-1.amazonaws.com/797459365217/lanchonete-producao-queue.fifo
+  AWS_SQS_OUT_PRODUCAO_URI: https://sqs.us-east-1.amazonaws.com/786426553713/lanchonete-producao-queue.fifo
+  AWS_SQS_OUT_PAGAMENTO_URI: https://sqs.us-east-1.amazonaws.com/786426553713/lanchonete-pagamento-queue.fifo
+  AWS_SQS_IN_PEDIDO_STATUS_PAGO_NAME: lanchonete-pedido-status-queue.fifo
   ENVIO_PEDIDO_PRODUCAO_ENABLED: "true"
   URI_API_PAGAMENTO: http://svc-pagamento-app/pagamento-app/pagamentos
