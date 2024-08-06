@@ -8,6 +8,7 @@ import com.fiap.pedidoapp.application.cliente.gateways.ClienteGateway;
 import com.fiap.pedidoapp.application.cliente.usecases.BuscarClientePorCpf;
 import com.fiap.pedidoapp.application.cliente.usecases.CadastrarCliente;
 import com.fiap.pedidoapp.application.cliente.usecases.CadastrarClientePeloToken;
+import com.fiap.pedidoapp.application.cliente.usecases.InativarCliente;
 import com.fiap.pedidoapp.application.cognito.clients.CognitoClient;
 import com.fiap.pedidoapp.infrastructure.cliente.gateways.ClienteRepositoryGateway;
 import com.fiap.pedidoapp.infrastructure.cliente.persistence.repository.ClienteRepository;
@@ -24,6 +25,11 @@ public class ClienteConfig {
     @Bean
     CadastrarCliente cadastrarCliente(ClienteGateway clienteGateway) {
         return new CadastrarCliente(clienteGateway);
+    }
+
+    @Bean
+    InativarCliente inativarCliente(ClienteGateway clienteGateway) {
+        return new InativarCliente(clienteGateway);
     }
 
     @Bean

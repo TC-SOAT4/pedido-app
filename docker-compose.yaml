@@ -3,7 +3,7 @@ services:
 
   database:
     image: thiagobsn/mariadb-lanchonete
-    ports: 
+    ports:
       - 3306:3306
     networks:
       -  app-network
@@ -17,11 +17,11 @@ services:
 
   app:
     image: thiagobsn/pedido-app
-    ports: 
+    ports:
       - 8080:8080
     networks:
       - app-network
-    depends_on: 
+    depends_on:
       - database
     links:
       - database
@@ -31,14 +31,13 @@ services:
       - SPRING_DATASOURCE_USERNAME=mariadb
       - SPRING_JPA_SHOW-SQL=true
       - SPRING_JPA_PROPERTIES_HIBERNATE_FORMAT_SQL=true
-   
+
 networks:
   app-network:
     driver: bridge
 
 volumes:
-    mariadb: {}
+  mariadb: {}
 
 
-   
-    
+
