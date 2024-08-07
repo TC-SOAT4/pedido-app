@@ -1,5 +1,5 @@
 
-### Tech Challenge - FASE 4
+### Tech Challenge - FASE 5
 <p align="center">
 Sistema desenvolvido como forma de avalição da terceira fase do curso de Pós graduação de Arquitetura de Software. Se trata de um sistema para controle de pedidos para uma lanchonete, a fim de otimizar a eficiência no atendimento aos clientes e gerenciar o estoque de maneira adequada.
 </p>
@@ -127,6 +127,29 @@ curl --request GET \
 **SQS**
 
 - Para realizar o envio dos pedidos `Pagos` para produção é necessario setar o valor `true` na propertie `envio.pedido.producao.enabled`.
+
+**Saga**
+
+- Para o desafio proposto, a equipe optou por utilizar a saga orquestrada. A escolha foi devido à estrutura dos microsserviços, onde o serviço de cadastro de pedido era quem realizava todas as decisões. Dessa forma, o projeto foi refatorado de modo que o microsserviço de cadastro de pedido ficou como o orquestrador, onde ele decide quando enviar o pedido para fila de pagamento e produção, centralizando todas as decisões a fim de manter a consistência dos dados. 
+
+
+- Para a Saga de checkout, foram criadas 3 filas:
+	- Fila para pagamentos.
+	- Fila para produção do pedido (cozinha). 
+	- Fila para atualizar o status do pedido.
+
+- A saga se inicia quando o cliente realiza um pedido.
+	- Pedido-app:  envia os dados de pagamento do pedido para a fila de pagamento.
+	- Pagamento-app: processa o pagamento e envia o resultado para a fila de atualização de status do pedido.
+	- Pedido-app: atualiza o status do pedido e notifica o cliente. Se o pagamento for aprovado, envia o pedido para a fila de produção.
+ 	- Produção-app: coloca na fila de produção, quando pronto, envia o pedido para a fila de atualização de status do pedido.
+	- Pedido-app: atualiza o status do pedido e notifica o cliente.
+
+
+
+
+![Saga Pedido](/assets/saga.drawio.png)
+
 
 
 
