@@ -124,11 +124,21 @@ curl --request GET \
 - [SignIn/SignUp - Cognito](https://lanchonete.auth.us-east-1.amazoncognito.com/login?client_id=7dbvinjad7nqfv31ah9thbkgu4&response_type=token&scope=aws.cognito.signin.user.admin+email+openid+phone+profile&redirect_uri=https%3A%2F%2Fexample.com%2F "SignIn/SignUp - Cognito")
 
 
-**SQS**
+##### SQS
 
-- Para realizar o envio dos pedidos `Pagos` para produção é necessario setar o valor `true` na propertie `envio.pedido.producao.enabled`.
+- Necessário criar as filas a seguir e configurar no `application.properties`:
+	- lanchonete-pagamento-queue.fifo
+	- lanchonete-producao-queue.fifo
+	- lanchonete-pedido-status-queue.fifo
 
-**Saga**
+- application.properties
+  ```
+  aws.sqs.out.producao.uri=https://exemplo.com.com/lanchonete-producao-queue.fifo
+  aws.sqs.out.pagamento.uri=https://exemplo.com/lanchonete-pagamento-queue.fifo
+  aws.sqs.in.pedido.status.pago.name=lanchonete-pedido-status-queue.fifo
+  ```
+
+##### Saga
 
 - Para o desafio proposto, a equipe optou por utilizar a saga orquestrada. A escolha foi devido à estrutura dos microsserviços, onde o serviço de cadastro de pedido era quem realizava todas as decisões. Dessa forma, o projeto foi refatorado de modo que o microsserviço de cadastro de pedido ficou como o orquestrador, onde ele decide quando enviar o pedido para fila de pagamento e produção, centralizando todas as decisões a fim de manter a consistência dos dados. 
 
@@ -149,6 +159,14 @@ curl --request GET \
 
 
 ![Saga Pedido](/assets/saga.drawio.png)
+
+
+
+##### Owasp Zap
+
+- Relatório se encontra disponível dentro da pasta `owasp-zap` na raiz do projeto.
+- O projeto não apresentou nenhuma vulnerabilidade altas
+
 
 
 
