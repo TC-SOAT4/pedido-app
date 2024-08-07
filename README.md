@@ -131,6 +131,13 @@ curl --request GET \
 	- lanchonete-producao-queue.fifo
 	- lanchonete-pedido-status-queue.fifo
 
+- application.properties
+  ```
+   	aws.sqs.out.producao.uri=https://exemplo.com.com/lanchonete-producao-queue.fifo
+	aws.sqs.out.pagamento.uri=https://exemplo.com/lanchonete-pagamento-queue.fifo
+	aws.sqs.in.pedido.status.pago.name=lanchonete-pedido-status-queue.fifo
+  ```
+
 ##### Saga
 
 - Para o desafio proposto, a equipe optou por utilizar a saga orquestrada. A escolha foi devido à estrutura dos microsserviços, onde o serviço de cadastro de pedido era quem realizava todas as decisões. Dessa forma, o projeto foi refatorado de modo que o microsserviço de cadastro de pedido ficou como o orquestrador, onde ele decide quando enviar o pedido para fila de pagamento e produção, centralizando todas as decisões a fim de manter a consistência dos dados. 
