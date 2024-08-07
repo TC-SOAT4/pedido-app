@@ -126,7 +126,7 @@ curl --request GET \
 
 ##### SQS
 
-- Necessário criar as filas a seguir:
+- Necessário criar as filas a seguir e configurar no `application.properties`:
 	- lanchonete-pagamento-queue.fifo
 	- lanchonete-producao-queue.fifo
 	- lanchonete-pedido-status-queue.fifo
