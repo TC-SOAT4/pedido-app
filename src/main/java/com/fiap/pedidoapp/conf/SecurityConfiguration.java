@@ -23,9 +23,10 @@ public class SecurityConfiguration {
         http.csrf(Customizer.withDefaults())
             .csrf(AbstractHttpConfigurer::disable)
             .cors(AbstractHttpConfigurer::disable)
-            .authorizeHttpRequests(authz -> authz.requestMatchers("/", "/swagger-ui/**", "/v3/api-docs/**", "/actuator/**")
+            .authorizeHttpRequests(authz -> authz.requestMatchers("/", "/swagger-ui/**", "/v3/api-docs/**", "/actuator/health")
                 .permitAll()
                 .requestMatchers("private/**").hasAnyRole("CLIENTE")
+                .requestMatchers("/actuator").hasAnyRole("ADMIN")
                 .anyRequest().permitAll()
                 )
                 .oauth2ResourceServer(oauth2 ->oauth2
