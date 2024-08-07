@@ -155,6 +155,14 @@ curl --request GET \
 
 
 
+**Owasp Zap**
+
+- Relatório se encontra disponível dentro da pasta `owasp-zap` na raiz do projeto.
+- O projeto não apresentou nenhuma vulnerabilidade altas
+
+
+
+
 
 
 
