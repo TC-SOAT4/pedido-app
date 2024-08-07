@@ -1,0 +1,581 @@
+{
+	"info": {
+		"_postman_id": "b87febff-1030-4b8e-9c32-cd0442330952",
+		"name": "Pedido-app",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "3550984"
+	},
+	"item": [
+		{
+			"name": "Buscar por CPF",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": []
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"followRedirects": true,
+				"disableUrlEncoding": false,
+				"disableCookies": false
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{ _.base_url }}/api/clientes/buscar-por-cpf?cpf=string",
+					"host": [
+						"{{ _.base_url }}"
+					],
+					"path": [
+						"api",
+						"clientes",
+						"buscar-por-cpf"
+					],
+					"query": [
+						{
+							"key": "cpf",
+							"value": "string"
+						}
+					]
+				},
+				"description": "Buscar um cliente utilizando o CPF"
+			},
+			"response": []
+		},
+		{
+			"name": "Listar",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": []
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"followRedirects": true,
+				"disableUrlEncoding": false,
+				"disableCookies": false
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{ _.base_url }}/api/pedidos",
+					"host": [
+						"{{ _.base_url }}"
+					],
+					"path": [
+						"api",
+						"pedidos"
+					]
+				},
+				"description": "Lista pedidos"
+			},
+			"response": []
+		},
+		{
+			"name": "Buscar por Categoria",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": []
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"followRedirects": true,
+				"disableUrlEncoding": false,
+				"disableCookies": false
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{ _.base_url }}/api/produtos/buscar-por-categoria?codigoCategoria=0",
+					"host": [
+						"{{ _.base_url }}"
+					],
+					"path": [
+						"api",
+						"produtos",
+						"buscar-por-categoria"
+					],
+					"query": [
+						{
+							"key": "codigoCategoria",
+							"value": "0"
+						}
+					]
+				},
+				"description": "Buscar produtos por categoria"
+			},
+			"response": []
+		},
+		{
+			"name": "Buscar por id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": []
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"followRedirects": true,
+				"disableUrlEncoding": false,
+				"disableCookies": false
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{ _.base_url }}/api/produtos/{{ _.id }}",
+					"host": [
+						"{{ _.base_url }}"
+					],
+					"path": [
+						"api",
+						"produtos",
+						"{{ _.id }}"
+					]
+				},
+				"description": "buscar um produto por id"
+			},
+			"response": []
+		},
+		{
+			"name": "Remover",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": []
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"followRedirects": true,
+				"disableUrlEncoding": false,
+				"disableCookies": false
+			},
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{ _.base_url }}/api/produtos/{{ _.id }}",
+					"host": [
+						"{{ _.base_url }}"
+					],
+					"path": [
+						"api",
+						"produtos",
+						"{{ _.id }}"
+					]
+				},
+				"description": "Remover um produto"
+			},
+			"response": []
+		},
+		{
+			"name": "Realizar Checkout",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": []
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"followRedirects": true,
+				"disableUrlEncoding": false,
+				"disableCookies": false
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"itens\": [\n    {\n      \"codigoProduto\": 0,\n      \"quantidade\": 0\n    }\n  ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ _.base_url }}/api/pedidos/checkout",
+					"host": [
+						"{{ _.base_url }}"
+					],
+					"path": [
+						"api",
+						"pedidos",
+						"checkout"
+					]
+				},
+				"description": "Enviar pedido para fila"
+			},
+			"response": []
+		},
+		{
+			"name": "Cadastrar",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": []
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"followRedirects": true,
+				"disableUrlEncoding": false,
+				"disableCookies": false
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"nome\": \"string\",\n  \"cpf\": \"string\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ _.base_url }}/api/clientes",
+					"host": [
+						"{{ _.base_url }}"
+					],
+					"path": [
+						"api",
+						"clientes"
+					]
+				},
+				"description": "Cadastrar um novo cliente"
+			},
+			"response": []
+		},
+		{
+			"name": "Realizar Checkout de um clinete autenticado",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": []
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"followRedirects": true,
+				"disableUrlEncoding": false,
+				"disableCookies": false
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{ _.bearerToken }}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"itens\": [\n    {\n      \"codigoProduto\": 0,\n      \"quantidade\": 0\n    }\n  ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ _.base_url }}/private/api/pedidos/checkout",
+					"host": [
+						"{{ _.base_url }}"
+					],
+					"path": [
+						"private",
+						"api",
+						"pedidos",
+						"checkout"
+					]
+				},
+				"description": "Enviar pedido para fila"
+			},
+			"response": []
+		},
+		{
+			"name": "Inativar Cliente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": []
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"followRedirects": true,
+				"disableUrlEncoding": false,
+				"disableCookies": false
+			},
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "{{ _.base_url }}/api/clientes/{{ _.id }}/inativar",
+					"host": [
+						"{{ _.base_url }}"
+					],
+					"path": [
+						"api",
+						"clientes",
+						"{{ _.id }}",
+						"inativar"
+					]
+				},
+				"description": "Inativar um cliente pelo ID"
+			},
+			"response": []
+		},
+		{
+			"name": "Atualizar status",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": []
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"followRedirects": true,
+				"disableUrlEncoding": false,
+				"disableCookies": false
+			},
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "{{ _.base_url }}/api/pedidos/{{ _.id }}?novoStatus=string",
+					"host": [
+						"{{ _.base_url }}"
+					],
+					"path": [
+						"api",
+						"pedidos",
+						"{{ _.id }}"
+					],
+					"query": [
+						{
+							"key": "novoStatus",
+							"value": "string"
+						}
+					]
+				},
+				"description": "Atualizar status pedido"
+			},
+			"response": []
+		},
+		{
+			"name": "Buscar",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": []
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"followRedirects": true,
+				"disableUrlEncoding": false,
+				"disableCookies": false
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{ _.base_url }}/api/pedidos/{{ _.id }}",
+					"host": [
+						"{{ _.base_url }}"
+					],
+					"path": [
+						"api",
+						"pedidos",
+						"{{ _.id }}"
+					]
+				},
+				"description": "Buscar"
+			},
+			"response": []
+		},
+		{
+			"name": "Cadastrar",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": []
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"followRedirects": true,
+				"disableUrlEncoding": false,
+				"disableCookies": false
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"nome\": \"string\",\n  \"descricao\": \"string\",\n  \"valor\": 0,\n  \"codigoCategoria\": 0\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ _.base_url }}/api/produtos",
+					"host": [
+						"{{ _.base_url }}"
+					],
+					"path": [
+						"api",
+						"produtos"
+					]
+				},
+				"description": "Cadastrar um novo produto"
+			},
+			"response": []
+		},
+		{
+			"name": "Editar",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": []
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"followRedirects": true,
+				"disableUrlEncoding": false,
+				"disableCookies": false
+			},
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"idProduto\": 0,\n  \"nome\": \"string\",\n  \"descricao\": \"string\",\n  \"valor\": 0,\n  \"categoria\": {\n    \"idCategoria\": 0,\n    \"nome\": \"string\",\n    \"ativo\": true\n  },\n  \"ativo\": true\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ _.base_url }}/api/produtos",
+					"host": [
+						"{{ _.base_url }}"
+					],
+					"path": [
+						"api",
+						"produtos"
+					]
+				},
+				"description": "Editar os dados de um produto cadastrado"
+			},
+			"response": []
+		},
+		{
+			"name": "Listar todos",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": []
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"followRedirects": true,
+				"disableUrlEncoding": false,
+				"disableCookies": false
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{ _.base_url }}/api/produtos",
+					"host": [
+						"{{ _.base_url }}"
+					],
+					"path": [
+						"api",
+						"produtos"
+					]
+				},
+				"description": "listar todos os produtos"
+			},
+			"response": []
+		}
+	]
+}
