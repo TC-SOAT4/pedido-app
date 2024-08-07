@@ -133,9 +133,9 @@ curl --request GET \
 
 - application.properties
   ```
-   	aws.sqs.out.producao.uri=https://exemplo.com.com/lanchonete-producao-queue.fifo
-	aws.sqs.out.pagamento.uri=https://exemplo.com/lanchonete-pagamento-queue.fifo
-	aws.sqs.in.pedido.status.pago.name=lanchonete-pedido-status-queue.fifo
+  aws.sqs.out.producao.uri=https://exemplo.com.com/lanchonete-producao-queue.fifo
+  aws.sqs.out.pagamento.uri=https://exemplo.com/lanchonete-pagamento-queue.fifo
+  aws.sqs.in.pedido.status.pago.name=lanchonete-pedido-status-queue.fifo
   ```
 
 ##### Saga
